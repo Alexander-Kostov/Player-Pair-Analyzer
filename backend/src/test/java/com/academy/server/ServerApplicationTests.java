@@ -1,4 +1,4 @@
-package com.academy.playerPairAnalyzer.server;
+package com.academy.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
