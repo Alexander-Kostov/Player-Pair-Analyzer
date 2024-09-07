@@ -15,6 +15,16 @@ public class Team {
     private String manager;
 
     private String groupName;
+    @OneToMany(mappedBy = "team")
+    private List<Player> players;
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 
     public Team() {}
 
@@ -22,6 +32,7 @@ public class Team {
         this.name = name;
         this.manager = manager;
         this.groupName = groupName;
+
     }
 
     public Long getId() {
