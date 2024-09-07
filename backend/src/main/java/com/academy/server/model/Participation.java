@@ -3,7 +3,7 @@ package com.academy.server.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Record {
+public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +18,9 @@ public class Record {
     private int fromMinutes;
 
     private int toMinutes;
+
+    public Participation() {
+    }
 
     public Long getId() {
         return id;
