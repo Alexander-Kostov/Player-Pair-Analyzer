@@ -1,6 +1,7 @@
 package com.academy.server.controller;
 
-import com.academy.server.model.Player;
+import com.academy.server.dto.PlayerInTeamDTO;
+import com.academy.server.dto.SeparatePlayerDTO;
 import com.academy.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class PlayerController {
     private PlayerService playerService;
 
     @GetMapping("/all")
-    public List<Player> players() {
+    public List<SeparatePlayerDTO> players() {
         return playerService.getAllPlayers();
     }
 }

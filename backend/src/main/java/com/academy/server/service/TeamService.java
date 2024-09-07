@@ -1,6 +1,6 @@
 package com.academy.server.service;
 
-import com.academy.server.dto.PlayerDTO;
+import com.academy.server.dto.PlayerInTeamDTO;
 import com.academy.server.dto.TeamDTO;
 import com.academy.server.model.Team;
 import com.academy.server.repository.TeamRepository;
@@ -32,8 +32,8 @@ public class TeamService {
     }
 
     private TeamDTO convertToDTO(Team team) {
-        List<PlayerDTO> playerDTOs = team.getPlayers().stream()
-                .map(player -> new PlayerDTO(
+        List<PlayerInTeamDTO> playerInTeamDTOS = team.getPlayers().stream()
+                .map(player -> new PlayerInTeamDTO(
                         player.getId(),
                         player.getFullName(),
                         player.getTeamNumber(),
@@ -46,7 +46,7 @@ public class TeamService {
                 team.getName(),
                 team.getManager(),
                 team.getGroupName(),
-                playerDTOs
+                playerInTeamDTOS
                 );
     }
 }

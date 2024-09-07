@@ -1,27 +1,18 @@
-package com.academy.server.model;
+package com.academy.server.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Player {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SeparatePlayerDTO {
     private Long id;
     private String fullName;
     private int teamNumber;
     private String position;
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+    private Long teamId;
 
-    public Player() {}
-
-    public Player(String fullName, int teamNumber, String position, Team team) {
+    public SeparatePlayerDTO(Long id, String fullName, int teamNumber, String position, Long teamId) {
+        this.id = id;
         this.fullName = fullName;
         this.teamNumber = teamNumber;
         this.position = position;
-        this.team = team;
+        this.teamId = teamId;
     }
 
     public Long getId() {
@@ -56,11 +47,11 @@ public class Player {
         this.position = position;
     }
 
-    public Team getTeam() {
-        return team;
+    public Long getTeamId() {
+        return teamId;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }

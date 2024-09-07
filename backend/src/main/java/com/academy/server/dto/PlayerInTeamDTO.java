@@ -1,18 +1,17 @@
 package com.academy.server.dto;
 
-public class PlayerDTO {
+public class PlayerInTeamDTO {
     private Long id;
     private String fullName;
     private int teamNumber;
     private String position;
 
-    public PlayerDTO(Long id, String fullName, int teamNumber, String position) {
+    public PlayerInTeamDTO(Long id, String fullName, int teamNumber, String position) {
         this.id = id;
         this.fullName = fullName;
         this.teamNumber = teamNumber;
         this.position = position;
     }
-
     public Long getId() {
         return id;
     }
@@ -44,4 +43,5 @@ public class PlayerDTO {
     public void setPosition(String position) {
         this.position = position;
     }
+
 }

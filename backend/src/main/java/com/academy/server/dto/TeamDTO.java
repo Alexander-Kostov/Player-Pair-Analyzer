@@ -1,7 +1,5 @@
 package com.academy.server.dto;
 
-import com.academy.server.model.Player;
-
 import java.util.List;
 
 public class TeamDTO {
@@ -9,14 +7,21 @@ public class TeamDTO {
     private String name;
     private String manager;
     private String groupName;
-    private List<PlayerDTO> players;
+    private List<PlayerInTeamDTO> players;
 
-    public TeamDTO(Long id, String name, String manager, String groupName, List<PlayerDTO> players) {
+    public TeamDTO(Long id, String name, String manager, String groupName, List<PlayerInTeamDTO> players) {
         this.id = id;
         this.name = name;
         this.manager = manager;
         this.groupName = groupName;
         this.players = players;
+    }
+
+    public TeamDTO(Long id, String name, String manager, String groupName) {
+        this.id = id;
+        this.name = name;
+        this.manager = manager;
+        this.groupName = groupName;
     }
 
     public Long getId() {
@@ -51,11 +56,11 @@ public class TeamDTO {
         this.groupName = groupName;
     }
 
-    public List<PlayerDTO> getPlayers() {
+    public List<PlayerInTeamDTO> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<PlayerDTO> players) {
+    public void setPlayers(List<PlayerInTeamDTO> players) {
         this.players = players;
     }
 }
