@@ -1,5 +1,6 @@
 package com.academy.server.controller;
 
+import com.academy.server.dto.TeamDTO;
 import com.academy.server.model.Team;
 import com.academy.server.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,9 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
     @GetMapping("/all")
-    public List<Team> getAllTeams() {
+    public List<TeamDTO> getAllTeams() {
 
-        List<Team> all = teamService.getAll();
 
-        System.out.println();
         return teamService.getAll();
     }
 }
