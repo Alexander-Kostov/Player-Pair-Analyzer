@@ -13,7 +13,7 @@ public class Participation {
     private Player player;
     @ManyToOne
     @JoinColumn(name = "game_id")
-    private Game game;
+    private Meet meet;
 
     private int fromMinutes;
 
@@ -38,12 +38,12 @@ public class Participation {
         this.player = player;
     }
 
-    public Game getGame() {
-        return game;
+    public Meet getGame() {
+        return meet;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGame(Meet meet) {
+        this.meet = meet;
     }
 
     public int getFromMinutes() {

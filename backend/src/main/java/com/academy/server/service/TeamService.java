@@ -28,6 +28,7 @@ public class TeamService {
     }
 
     public Optional<Team> getTeamById(Long id) {
+
         return teamRepository.findById(id);
     }
 

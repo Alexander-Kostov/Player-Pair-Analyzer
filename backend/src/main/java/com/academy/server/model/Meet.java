@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Game {
+public class Meet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,13 @@ public class Game {
 
     private String score;
 
-    public Game() {
+    public Meet() {}
+
+    public Meet(Team teamA, Team teamB, Date date, String score) {
+        this.teamA = teamA;
+        this.teamB = teamB;
+        this.date = date;
+        this.score = score;
     }
 
     public Long getId() {

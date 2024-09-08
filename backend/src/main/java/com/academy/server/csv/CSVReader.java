@@ -1,8 +1,10 @@
 package com.academy.server.csv;
 
+import com.academy.server.model.Meet;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
 import com.academy.server.service.TeamService;
+import com.academy.server.util.DateParser;
 import com.academy.server.validation.impl.InputValidator;
 import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +26,8 @@ public class CSVReader {
     private InputValidator inputValidator;
     @Autowired
     private TeamService teamService;
-
+    @Autowired
+    private DateParser dateParser;
     public List<Team> readTeams(String filepath) {
         List<Team> teams = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -98,5 +103,47 @@ public class CSVReader {
         }
 
         return players;
+    }
+
+    public List<Meet> readMeets(String path) {
+        List<Meet> meets = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            int lineNum = 0;
+
+            if ((line = br.readLine()) == null) {
+                System.out.println("Matches file is empty");
+                return meets;
+            }
+
+            while ((line = br.readLine()) != null) {
+                boolean validated = inputValidator.validateMeet(line, lineNum);
+
+                if (validated) {
+                    String[] data = line.split(",");
+                    long teamAId = Long.parseLong(data[1]);
+                    long teamBId = Long.parseLong(data[2]);
+
+                    Team teamA = teamService.getTeamById(teamAId).get();
+                    Team teamB = teamService.getTeamById(teamBId).get();
+                    String format = "MM/dd/yyyy";
+
+                    Date date = dateParser.parseDateFromMDY(data[3], format);
+
+                    Meet meet = new Meet(teamA, teamB, date, data[4]);
+                    meets.add(meet);
+                }
+
+
+                lineNum++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return meets;
     }
 }

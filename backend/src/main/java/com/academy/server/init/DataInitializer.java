@@ -1,8 +1,12 @@
-package com.academy.server.service;
+package com.academy.server.init;
 
 import com.academy.server.csv.CSVReader;
+import com.academy.server.model.Meet;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
+import com.academy.server.service.MeetService;
+import com.academy.server.service.PlayerService;
+import com.academy.server.service.TeamService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +19,8 @@ public class DataInitializer {
     private TeamService teamService;
     @Autowired
     private PlayerService playerService;
+    @Autowired
+    private MeetService meetService;
     @Autowired
     private CSVReader csvReader;
 
@@ -31,6 +37,9 @@ public class DataInitializer {
 
         List<Player> players = csvReader.readPlayers(filepath + "/players.csv");
         playerService.savePlayers(players);
+
+        List<Meet> meets = csvReader.readMeets(filepath + "/matches.csv");
+        meetService.saveAll(meets);
     }
 
 
