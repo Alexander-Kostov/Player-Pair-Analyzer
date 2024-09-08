@@ -22,6 +22,13 @@ public class Participation {
     public Participation() {
     }
 
+    public Participation(Player player, Meet meet, int fromMinutes, int toMinutes) {
+        this.player = player;
+        this.meet = meet;
+        this.fromMinutes = fromMinutes;
+        this.toMinutes = toMinutes;
+    }
+
     public Long getId() {
         return id;
     }

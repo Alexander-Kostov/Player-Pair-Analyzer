@@ -2,9 +2,11 @@ package com.academy.server.init;
 
 import com.academy.server.csv.CSVReader;
 import com.academy.server.model.Meet;
+import com.academy.server.model.Participation;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
 import com.academy.server.service.MeetService;
+import com.academy.server.service.ParticipationService;
 import com.academy.server.service.PlayerService;
 import com.academy.server.service.TeamService;
 import jakarta.annotation.PostConstruct;
@@ -22,6 +24,8 @@ public class DataInitializer {
     @Autowired
     private MeetService meetService;
     @Autowired
+    ParticipationService participationService;
+    @Autowired
     private CSVReader csvReader;
 
     @PostConstruct
@@ -33,13 +37,22 @@ public class DataInitializer {
         String filepath = "src/main/java/com/academy/server/data";
 
         List<Team> teams = csvReader.readTeams(filepath + "/teams.csv");
-        teamService.saveTeams(teams);
-
+        if (teams != null) {
+            teamService.saveTeams(teams);
+        }
         List<Player> players = csvReader.readPlayers(filepath + "/players.csv");
-        playerService.savePlayers(players);
-
+        if (players != null) {
+            playerService.savePlayers(players);
+        }
         List<Meet> meets = csvReader.readMeets(filepath + "/matches.csv");
-        meetService.saveAll(meets);
+        if (meets != null) {
+            meetService.saveMeets(meets);
+        }
+        List<Participation> participations = csvReader.readParticipations(filepath + "/records.csv");
+        if (participations != null) {
+            participationService.saveAllParticipations(participations);
+        }
+
     }
 
 

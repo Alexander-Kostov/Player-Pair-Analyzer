@@ -1,8 +1,11 @@
 package com.academy.server.csv;
 
 import com.academy.server.model.Meet;
+import com.academy.server.model.Participation;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
+import com.academy.server.service.MeetService;
+import com.academy.server.service.PlayerService;
 import com.academy.server.service.TeamService;
 import com.academy.server.util.DateParser;
 import com.academy.server.validation.impl.InputValidator;
@@ -27,6 +30,10 @@ public class CSVReader {
     @Autowired
     private TeamService teamService;
     @Autowired
+    private PlayerService playerService;
+    @Autowired
+    private MeetService meetService;
+    @Autowired
     private DateParser dateParser;
     public List<Team> readTeams(String filepath) {
         List<Team> teams = new ArrayList<>();
@@ -48,30 +55,34 @@ public class CSVReader {
 
                 if (validated) {
                     String[] data = line.split(",");
-                    String country = data[1];
-                    String manager = data[2];
-                    String group = data[3];
+                    String country = data[1].trim();
+                    String manager = data[2].trim();
+                    String group = data[3].trim();
 
                     Team team = new Team(country, manager, group);
                     teams.add(team);
+                } else {
+                    System.out.println("Please try again with valid data");
+                    return null;
                 }
 
                 lineNum++;
             }
         } catch (FileNotFoundException fileNotFoundException) {
-
             System.out.println(fileNotFoundException.getMessage() + "Error");
+
         } catch (IOException e) {
             System.out.println(e.getMessage() + "Error");
+
         }
 
         return teams;
     }
 
-    public List<Player> readPlayers(String path) {
+    public List<Player> readPlayers(String filepath) {
         List<Player> players = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
             int lineNum = 0;
 
@@ -92,6 +103,9 @@ public class CSVReader {
                     Team team = teamService.getTeamById(teamId).get();
                     Player player = new Player(name, teamNumber, position, team);
                     players.add(player);
+                } else {
+                    System.out.println("Please try again with valid data");
+                    return null;
                 }
 
                 lineNum++;
@@ -131,7 +145,9 @@ public class CSVReader {
 
                     Date date = dateParser.parseDateFromMDY(data[3], format);
 
-                    Meet meet = new Meet(teamA, teamB, date, data[4]);
+                    String result = data[4];
+
+                    Meet meet = new Meet(teamA, teamB, date, result);
                     meets.add(meet);
                 }
 
@@ -145,5 +161,57 @@ public class CSVReader {
         }
 
         return meets;
+    }
+
+    public List<Participation> readParticipations(String filepath) {
+        List<Participation> participations = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+            String line;
+            int lineNum = 0;
+
+            if ((line = br.readLine()) == null) {
+                System.out.println("records file is empty");
+                return participations;
+            }
+
+            while ((line = br.readLine()) != null) {
+                boolean validated = inputValidator.validateParticipation(line, lineNum);
+
+                if (validated) {
+                    String[] data = line.split(",");
+                    Long playerId = Long.parseLong(data[1]);
+                    Player player = playerService.findPlayerById(playerId).get();
+
+                    Long meetId = Long.parseLong(data[2]);
+                    Meet meet = meetService.findMeetById(meetId).get();
+
+                    int fromMin = Integer.parseInt(data[3]);
+                    int toMin;
+                    if (data[4].equals("NULL")) {
+                        toMin = 90;
+                    } else {
+                        toMin = Integer.parseInt(data[4]);
+                    }
+
+                    Participation participation = new Participation(
+                            player,
+                            meet,
+                            fromMin,
+                            toMin
+                    );
+
+                    participations.add(participation);
+                }
+
+                lineNum++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return participations;
     }
 }

@@ -17,7 +17,7 @@ public class PlayerController {
     private PlayerService playerService;
 
     @GetMapping("/all")
-    public List<SeparatePlayerDTO> players() {
+    public List<SeparatePlayerDTO> showAllPlayers() {
         return playerService.getAllPlayers();
     }
 }

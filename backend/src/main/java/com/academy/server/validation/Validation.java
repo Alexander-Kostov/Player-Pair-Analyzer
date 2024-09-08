@@ -6,4 +6,6 @@ public interface Validation {
     boolean validatePlayer(String line, int lineNum);
 
     boolean validateMeet(String line, int lineNum);
+
+    boolean validateParticipation(String line, int lineNum);
 }

@@ -1,14 +1,13 @@
 package com.academy.server.service;
 
-import com.academy.server.dto.PlayerInTeamDTO;
 import com.academy.server.dto.SeparatePlayerDTO;
-import com.academy.server.dto.TeamDTO;
 import com.academy.server.model.Player;
 import com.academy.server.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,15 +24,13 @@ public class PlayerService {
     }
 
     private SeparatePlayerDTO convertToDTO(Player player) {
-        TeamDTO team = new TeamDTO(
-                player.getTeam().getId(),
-                player.getTeam().getName(),
-                player.getTeam().getManager(),
-                player.getTeam().getGroupName()
-        );
 
         return new SeparatePlayerDTO(player.getId(), player.getFullName(), player.getTeamNumber(),
                 player.getPosition(), player.getTeam().getId());
 
+    }
+
+    public Optional<Player> findPlayerById(Long playerId) {
+        return playerRepository.findById(playerId);
     }
 }

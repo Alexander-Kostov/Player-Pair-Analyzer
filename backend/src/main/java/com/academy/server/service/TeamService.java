@@ -24,7 +24,7 @@ public class TeamService {
     }
 
     public void saveTeams(List<Team> teams) {
-        teamRepository.saveAllAndFlush(teams);
+        teamRepository.saveAll(teams);
     }
 
     public Optional<Team> getTeamById(Long id) {

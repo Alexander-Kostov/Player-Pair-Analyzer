@@ -1,7 +1,10 @@
 package com.academy.server.validation.impl;
 
+import com.academy.server.model.Meet;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
+import com.academy.server.service.MeetService;
+import com.academy.server.service.PlayerService;
 import com.academy.server.service.TeamService;
 import com.academy.server.util.DateParser;
 import com.academy.server.validation.Validation;
@@ -18,6 +21,10 @@ import java.util.Optional;
 public class InputValidator implements Validation {
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private PlayerService playerService;
+    @Autowired
+    private MeetService meetService;
     @Autowired
     private DateParser dateParser;
 
@@ -63,6 +70,7 @@ public class InputValidator implements Validation {
 
         try {
             int teamNumber = Integer.parseInt(data[1]);
+
             if (checkIfStringIsNull(data[2])) {
                 System.out.println("Position is null or empty at line " + lineNum);
                 return false;
@@ -124,20 +132,14 @@ public class InputValidator implements Validation {
                 return false;
             }
 
-            if (data[4].trim().charAt(1) != '-') {
-                System.out.println("Invalid result stats at line " + lineNum);
+            String resultString = data[4].trim();
+
+            if (!isValidResultFormat(resultString)) {
+                System.out.println("Invalid result format at line " + lineNum);
                 return false;
             }
 
-            String[] resultData = data[4].split("-");
 
-            if (resultData.length != 2) {
-                System.out.println("Invalid result stats at line " + lineNum);
-                return false;
-            }
-
-            int firstTeamGoals = Integer.parseInt(resultData[0]);
-            int secondTeamGoals = Integer.parseInt(resultData[1]);
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid number at line " + lineNum);
@@ -147,8 +149,73 @@ public class InputValidator implements Validation {
         return true;
     }
 
+    @Override
+    public boolean validateParticipation(String line, int lineNum) {
+        String[] data = line.split(",");
+        if (data.length != 5) {
+            System.out.println("Invalid number of parameters at line " + lineNum);
+            return false;
+        }
+
+        try {
+            Long playerId = Long.parseLong(data[1]);
+            Optional<Player> playerById = playerService.findPlayerById(playerId);
+            if (playerById.isEmpty()) {
+                System.out.println("Player with id " + playerId + " does not exist at line " + lineNum);
+                return false;
+            }
+
+            Long meetId = Long.parseLong(data[2]);
+            Optional<Meet> meetById = meetService.findMeetById(meetId);
+            if (meetById.isEmpty()) {
+                System.out.println("There is no such match with id " + meetById + " at line" + lineNum);
+                return false;
+            }
+
+            int fromMinutes = Integer.parseInt(data[3]);
+
+            if (fromMinutes < 0) {
+                System.out.println("From minutes cannot be negative number at line " + lineNum);
+            }
+
+            String toMinutes = data[4].trim();
+
+            if (!toMinutes.equals("NULL")) {
+                Integer.parseInt(toMinutes);
+            }
+
+            if (toMinutes.equals("NULL")) {
+                int toMinutesInNumber = 90;
+                if (fromMinutes >= toMinutesInNumber) {
+                    System.out.println("Invalid player participation time: fromMinutes cannot be greater than or " +
+                            "equal to toMinutes at line " + lineNum);
+                    return false;
+                }
+            } else {
+                int toMinutesInNumber = Integer.parseInt(toMinutes);
+                if (fromMinutes >= toMinutesInNumber) {
+                    System.out.println("Invalid player participation time: fromMinutes cannot be greater than or equal to toMinutes at line " + lineNum);
+                    return false;
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number at line " + lineNum);
+        }
+
+        return true;
+    }
+
 
     private boolean checkIfStringIsNull(String data) {
-        return data == null || data.isEmpty();
+        return data == null || data.isBlank();
+    }
+
+    private boolean isValidResultFormat(String result) {
+        if (result.matches("\\d{1,2}-\\d{1,2}")) {
+            return true;
+        }
+
+        return result.matches("\\d{1,2}\\(\\d{1,2}\\)-\\d{1,2}\\(\\d{1,2}\\)");
     }
 }

@@ -17,7 +17,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
     @GetMapping("/all")
-    public List<TeamDTO> getAllTeams() {
+    public List<TeamDTO> showAllTeams() {
 
 
         return teamService.getAll();
