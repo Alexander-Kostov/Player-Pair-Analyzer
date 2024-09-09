@@ -1,5 +1,6 @@
 package com.academy.server.controller;
 
+import com.academy.server.dto.PlayerParticipationDTO;
 import com.academy.server.dto.PlayersWithMostMutualTimeDTO;
 import com.academy.server.service.PlayerParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,9 @@ public class PlayerParticipationController {
     @GetMapping("/most-time")
     public List<PlayersWithMostMutualTimeDTO> showPlayersWithMostMutualTime() {
         return participationService.getPlayersWithMostMutualTime();
+    }
+    @GetMapping("/all")
+    public List<PlayerParticipationDTO> showAllPlayerParticipations() {
+        return participationService.getAllPlayerParticipations();
     }
 }

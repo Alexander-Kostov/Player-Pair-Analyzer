@@ -45,11 +45,11 @@ public class PlayerParticipation {
         this.player = player;
     }
 
-    public Meet getGame() {
+    public Meet getMeet() {
         return meet;
     }
 
-    public void setGame(Meet meet) {
+    public void setMeet(Meet meet) {
         this.meet = meet;
     }
 
