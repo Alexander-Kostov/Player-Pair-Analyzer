@@ -3,7 +3,7 @@ package com.academy.server.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Participation {
+public class PlayerParticipation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,10 +19,10 @@ public class Participation {
 
     private int toMinutes;
 
-    public Participation() {
+    public PlayerParticipation() {
     }
 
-    public Participation(Player player, Meet meet, int fromMinutes, int toMinutes) {
+    public PlayerParticipation(Player player, Meet meet, int fromMinutes, int toMinutes) {
         this.player = player;
         this.meet = meet;
         this.fromMinutes = fromMinutes;

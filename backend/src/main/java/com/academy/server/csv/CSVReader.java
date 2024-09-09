@@ -1,7 +1,7 @@
 package com.academy.server.csv;
 
 import com.academy.server.model.Meet;
-import com.academy.server.model.Participation;
+import com.academy.server.model.PlayerParticipation;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
 import com.academy.server.service.MeetService;
@@ -9,7 +9,6 @@ import com.academy.server.service.PlayerService;
 import com.academy.server.service.TeamService;
 import com.academy.server.util.DateParser;
 import com.academy.server.validation.impl.InputValidator;
-import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +16,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CSVReader {
@@ -163,8 +160,8 @@ public class CSVReader {
         return meets;
     }
 
-    public List<Participation> readParticipations(String filepath) {
-        List<Participation> participations = new ArrayList<>();
+    public List<PlayerParticipation> readParticipations(String filepath) {
+        List<PlayerParticipation> playerParticipations = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
@@ -172,7 +169,7 @@ public class CSVReader {
 
             if ((line = br.readLine()) == null) {
                 System.out.println("records file is empty");
-                return participations;
+                return playerParticipations;
             }
 
             while ((line = br.readLine()) != null) {
@@ -194,14 +191,14 @@ public class CSVReader {
                         toMin = Integer.parseInt(data[4]);
                     }
 
-                    Participation participation = new Participation(
+                    PlayerParticipation playerParticipation = new PlayerParticipation(
                             player,
                             meet,
                             fromMin,
                             toMin
                     );
 
-                    participations.add(participation);
+                    playerParticipations.add(playerParticipation);
                 }
 
                 lineNum++;
@@ -212,6 +209,6 @@ public class CSVReader {
             throw new RuntimeException(e);
         }
 
-        return participations;
+        return playerParticipations;
     }
 }
