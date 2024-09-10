@@ -9,7 +9,7 @@ export default function Header() {
         { title: 'Matches', path: '/matches', position: 'left' },
 
         { title: 'Participations', path: '/participations', position: 'right' },
-        { title: 'Duos', path: '/participations/top-duos', position: 'right' },
+        { title: 'Lasting Duos', path: '/participations/lasting-duos', position: 'right' },
     ];
 
 
@@ -21,8 +21,7 @@ export default function Header() {
                         .filter(page => page.position === 'left')
                         .map(({ title, path }) => (
                             <li key={title}>
-                                {/* <Link to={path}>{title}</Link> */}
-                                {title}
+                                <Link to={path}>{title}</Link>
                             </li>
                         ))}
                 </ul>
@@ -32,8 +31,7 @@ export default function Header() {
                         .filter(page => page.position === 'right')
                         .map(({ title, path }) => (
                             <li key={title}>
-                                {/* <Link to={path}>{title}</Link> */}
-                                {title}
+                                <Link to={path}>{title}</Link>
                             </li>
                         ))}
                 </ul>
