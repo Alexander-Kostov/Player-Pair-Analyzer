@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    margin-left: 20em;
+    font-size: 14px;
+}
+
+.branch_1{
+    height: 220px; 
+    width: 300px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.branch_2{
+    height: 240px; 
+    width: 300px;
+    
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    margin-top: 12em;
+    gap: 10px;
+}
+
+.branch_3{
+    height: 120px; 
+    width: 260px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    margin-top: 18.4em;
+}
+
+.branch_4 {
+    align-items: center;
+    margin-top: 21em;
+}
+
+.object:nth-child(even) {
+    display: grid;
+    grid-template-columns: 170px 100px;
+    grid-template-rows: 46px 14px;
+}
+
+.object:nth-child(odd) {
+    display: grid;
+    grid-template-columns: 170px 80px;
+    grid-template-rows: 46px 14px;
+    text-align: center;
+    gap: 1em;
+}
+
+.teams {
+    background-color: rgb(54, 147, 95);
+    border-radius: 5px;
+}
+

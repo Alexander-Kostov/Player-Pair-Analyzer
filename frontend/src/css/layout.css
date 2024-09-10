@@ -1,22 +1,27 @@
-.background-img {
+body {
     background-image: url(/public/images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
 
     height: 100vh;
     width: 100vw;
     position: relative;
     z-index: 0;
+
+    color: white;
+    position: relative;
+    font-size: 16px;
 }
 
-.background-img::after {
+body::after {
     content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
     background: linear-gradient(to bottom, 
     rgba(0, 0, 0, 0.80) 0%,
     rgba(0, 0, 0, 0.60) 70%,
@@ -24,10 +29,9 @@
     z-index: -1;
 }
 
-.app-layout {
+/* .app-layout {
     color: white;
     position: relative;
     font-size: 16px;
- 
-}
+} */
 
