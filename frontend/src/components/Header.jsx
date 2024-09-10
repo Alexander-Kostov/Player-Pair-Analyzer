@@ -12,7 +12,6 @@ export default function Header() {
         { title: 'Lasting Duos', path: '/participations/lasting-duos', position: 'right' },
     ];
 
-
     return (
         <header>
             <nav className="site-nav">
