@@ -1,3 +1,10 @@
+body {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 0.8px;
+}
+
 .hero {
     background-image: url(/src/images/background.jpg);
 }
