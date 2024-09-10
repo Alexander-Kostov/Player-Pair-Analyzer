@@ -1,0 +1,83 @@
+.site-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.site-nav ul,
+.site-nav ul li a {
+    text-decoration: none;
+    list-style-type: none;
+
+}
+
+.nav-left {
+    padding: 2em 4em;
+    display: flex;
+    gap: 1em;
+}
+
+.nav-right {
+    padding: 1.5em 5em;
+    display: flex;
+    gap: 1em;
+}
+
+.sign-up {
+    display: inline-block;
+    padding: 9px 17px;
+    background-color: #ADE2DF;
+    border-radius: 10px;
+}
+
+.log-in {
+    display: inline-block;
+    padding: 8px 5px;
+}
+
+.header-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ADE2DF;
+    padding-top: 3.5em;
+    padding-bottom: 5em;
+}
+
+.header-banner h1 {
+    font-size: 3.2em;
+    font-weight: 500;
+}
+
+.header-banner p {
+    font-size: 1.2em;
+    padding-bottom: 2em;
+    padding-top: 0.7em;
+}
+
+svg {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+svg {
+    fill: white;
+}
+
+.buttons {
+    display: flex;
+}
+
+.header-banner a {
+    text-decoration: none;
+    padding: 1em 2em;
+    background-color: black;
+    border-radius: 7px;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
