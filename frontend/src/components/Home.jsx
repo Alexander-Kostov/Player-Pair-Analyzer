@@ -23,8 +23,8 @@ export default function Home() {
         return <div>Loading...</div>;
     }
 
-
     const tournamentFinals = matchesData.slice(0, 15)
+    const groups = matchesData.slice(15);
 
     const roundOf16th = tournamentFinals.slice(7);
     const quarterFinals = tournamentFinals.slice(3, 7)
