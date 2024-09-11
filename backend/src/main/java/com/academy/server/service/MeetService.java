@@ -65,43 +65,46 @@ public class MeetService {
     }
 
     public MatchDetailDTO getMatchDetails(Long matchId) {
-        // Получаване на информация за срещата
-        Meet meet = meetRepository.findById(matchId)
-                .orElseThrow(() -> new RuntimeException("Match not found"));
+        List<Object[]> results = meetRepository.getMatchDetailsById(matchId);
 
-        Team teamB = teamService.getTeamById(meet.getTeamA().getId())
-                .orElseThrow(() -> new RuntimeException("Team B not found"));
+        if (results.isEmpty()) {
+            return null;
+        }
 
-        Team teamA = teamService.getTeamById(meet.getTeamB().getId())
-                .orElseThrow(() -> new RuntimeException("Team A not found"));
+        Object[] firstRow = results.get(0);
+        Long teamAId = ((Long) firstRow[4]);
+        String teamAName = (String) firstRow[5];
+        String score = (String) firstRow[6];
 
-        List<PlayerDTO> teamAplayers = teamA.getPlayers()
-                .stream()
-                .map(this::convertPlayerToPlayerDTO)
-                .collect(Collectors.toList());
+        Long teamBId = null;
+        String teamBName = null;
+        List<PlayerDTO> playersA = new ArrayList<>();
+        List<PlayerDTO> playersB = new ArrayList<>();
 
-        List<PlayerDTO> teamBplayers = teamB.getPlayers()
-                .stream()
-                .map(this::convertPlayerToPlayerDTO)
-                .collect(Collectors.toList());
+        for (Object[] row : results) {
+            Long playerId = ((Number) row[1]).longValue();
+            String playerName = (String) row[2];
+            String playerPosition = (String) row[3];
+            Long playerTeamId = ((Long) row[4]);
 
-        TeamADTO teamADTO = new TeamADTO(teamA.getId(), teamA.getName(), teamAplayers);
-        TeamBDTO teamBDTO = new TeamBDTO(teamB.getId(), teamB.getName(), teamBplayers);
+            PlayerDTO playerDTO = new PlayerDTO(playerId, playerName, playerPosition);
 
-        // Създаване на DTO с комбинираните данни
-        MatchDetailDTO matchDetailDTO = new MatchDetailDTO(
-                meet.getId(),
-                teamADTO,
-                teamBDTO,
-                meet.getScore()
-        );
+            if (playerTeamId.equals(teamAId)) {
+                playersA.add(playerDTO);
+            } else {
+                teamBId = ((Long) row[4]);
+                teamBName = ((String) row[5]);
+                playersB.add(playerDTO);
+            }
 
-        return matchDetailDTO;
+        }
+
+        TeamADTO teamADTO = new TeamADTO(teamAId, teamAName, playersA);
+        TeamBDTO teamBDTO = new TeamBDTO(teamBId, teamBName, playersB);
+
+        return new MatchDetailDTO(matchId, teamADTO, teamBDTO, score);
     }
 
-    private PlayerDTO convertPlayerToPlayerDTO(Player player) {
-        return new PlayerDTO(player.getId(), player.getFullName(), player.getPosition());
-    }
     private MeetDTO convertToMeetDTO(Meet meet) {
        return new MeetDTO(
                 meet.getId(),

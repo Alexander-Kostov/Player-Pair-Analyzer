@@ -19,6 +19,19 @@ public interface MeetRepository extends JpaRepository<Meet, Long> {
             "ORDER BY m.date DESC")
     List<Object[]> findAllMatchesData();
 
+    @Query(value = "SELECT m.id AS matchId, p.id AS playerId, p.full_name AS playerName, p.position AS " +
+            "playerPosition, " +
+            "p.team_id AS teamID, t.name AS teamName, m.score " +
+            "FROM meet m " +
+            "JOIN player_participation pp ON m.id = pp.game_id " +
+            "JOIN player p ON p.id = pp.player_id " +
+            "JOIN team t ON p.team_id = t.id " +
+            "WHERE m.id = :matchId " +
+            "GROUP BY p.id, t.id; ",
+            nativeQuery =
+            true)
+    List<Object[]> getMatchDetailsById(@Param("matchId") Long matchId);
+
 
 
 }
