@@ -14,8 +14,8 @@ export default function Match({ match }) {
             <div className='object'>
                 <div className='teams'>
                     <Link to={`/matches/${matchId}`} className='teams'>
-                        <div className='team'>{teamAName} {scoreExtracted[0]}</div>
-                        <div className='team'>{teamBName} {scoreExtracted[1]}</div>
+                        <div className='team'>{teamAName + ':'} {scoreExtracted[0]}</div>
+                        <div className='team'>{teamBName + ':'} {scoreExtracted[1]}</div>
                     </Link>
                 </div>
             </div>
