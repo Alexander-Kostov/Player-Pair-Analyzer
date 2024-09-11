@@ -1,19 +1,16 @@
 package com.academy.server.controller;
 
+import com.academy.server.dto.match_details_dtos.MatchDetailDTO;
 import com.academy.server.dto.MeetDTO;
 import com.academy.server.dto.TournamentMatchDTO;
 import com.academy.server.service.MeetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/meets")
-@CrossOrigin(origins = "http://localhost:5173")
 public class MeetController {
     @Autowired
     private MeetService meetService;
@@ -26,6 +23,11 @@ public class MeetController {
     @GetMapping("/tournament-data")
     public List<TournamentMatchDTO> showAllTournamentMatches() {
         return  meetService.getAllTournamentMatches();
+    }
+
+    @GetMapping("/{matchId}/details")
+    public MatchDetailDTO getMatchDetails(@PathVariable Long matchId) {
+        return meetService.getMatchDetails(matchId);
     }
 
 }

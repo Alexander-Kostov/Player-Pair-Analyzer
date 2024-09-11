@@ -3,9 +3,11 @@ package com.academy.server.repository;
 import com.academy.server.model.Meet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface MeetRepository extends JpaRepository<Meet, Long> {
@@ -16,4 +18,7 @@ public interface MeetRepository extends JpaRepository<Meet, Long> {
             "JOIN m.teamB t2 " +
             "ORDER BY m.date DESC")
     List<Object[]> findAllMatchesData();
+
+
+
 }
