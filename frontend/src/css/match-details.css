@@ -1,0 +1,87 @@
+.match-details-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+}
+
+.field-image {
+    margin-top: 3em;
+}
+
+.field-image img {
+    max-width: 480px;
+    filter: brightness(50%);
+}
+
+.score {
+    font-size: 3em; 
+    font-weight: bold;
+    transition: 0.5s ease-in;
+    color: #fff;
+    font-style: italic;
+}
+
+.score:hover {
+    font-size: 4em;
+}
+
+
+.team-name {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0.75em;
+}
+
+.player {
+    position: relative;
+    color: #eeeeee;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.player::after {
+    content: '';
+    position: absolute;
+    top: -50%; 
+    left: 11%; 
+    transform: translateX(-50%);
+    width: 10px; 
+    height: 10px;
+    background-color: red; 
+    border-radius: 50%; 
+}
+
+.player-gk {
+    bottom: 39px;
+    left: 174px;
+}
+
+.df-0{
+    bottom: 200px;
+    left: 32px;
+}
+
+.df-1 {
+    bottom: 265px;
+    left: 81px;
+}
+.df-2 {
+    bottom: 247px;
+    left: 184px;
+}
+
+.df-3 {
+    bottom: 271px;
+    left: 312px;
+}
+
+.df-4 {
+    bottom: 336px;
+    left: 277px;
+}
+
+.player-gk:after {
+    left: 14%; 
+}
+
