@@ -15,13 +15,13 @@ import java.util.List;
 public class TeamController {
     @Autowired
     private TeamService teamService;
-    @GetMapping("/all")
+    @GetMapping("/with-players")
     public List<TeamWithPlayersDTO> showAllTeams() {
 
         return teamService.getAll();
     }
 
-    @GetMapping("/no-players")
+    @GetMapping("/without-players")
     public List<TeamWithoutPlayersDTO> showTeamsWithoutPlayers() {
         return teamService.getTeamsWithoutPlayers();
     }
