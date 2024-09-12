@@ -1,27 +1,23 @@
-package com.academy.server.dto;
+package com.academy.server.dto.match_details_dtos;
 
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
-public class TournamentMatchDTO {
-
+public class MatchInGroupDTO {
     private Long id;
+    private String group;
     private String teamAName;
     private Long teamAId;
     private String teamBName;
     private Long teamBId;
     private String score;
-    private LocalDateTime date;
 
-    public TournamentMatchDTO(Long id, String teamAName, Long teamAId, String teamBName, Long teamBId, String score, LocalDateTime date) {
+    public MatchInGroupDTO(Long id, String group, String teamAName, Long teamAId, String teamBName, Long teamBId,
+                           String score) {
         this.id = id;
+        this.group = group;
         this.teamAName = teamAName;
         this.teamAId = teamAId;
         this.teamBName = teamBName;
         this.teamBId = teamBId;
         this.score = score;
-        this.date = date;
     }
 
     public Long getId() {
@@ -31,12 +27,21 @@ public class TournamentMatchDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getTeamAName() {
         return teamAName;
     }
 
     public void setTeamAName(String teamAName) {
         this.teamAName = teamAName;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 
     public Long getTeamAId() {
@@ -70,13 +75,4 @@ public class TournamentMatchDTO {
     public void setScore(String score) {
         this.score = score;
     }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 @Repository
 public interface MeetRepository extends JpaRepository<Meet, Long> {
 
-    @Query("SELECT m.id, t1.name, t1.id, t2.name, t2.id, m.score, m.date " +
+    @Query("SELECT m.id, t1.name, t1.id, t2.name, t2.id, m.score, m.date, t1.groupName, t2.groupName " +
             "FROM Meet m " +
             "JOIN m.teamA t1 " +
             "JOIN m.teamB t2 " +
@@ -32,6 +32,13 @@ public interface MeetRepository extends JpaRepository<Meet, Long> {
             true)
     List<Object[]> getMatchDetailsById(@Param("matchId") Long matchId);
 
-
+    @Query("SELECT m.id, t1.name AS teamAName, t1.groupName AS groupName, t1.id AS teamAId, " +
+            "t2.name AS teamBName, t2.id AS teamBId, m.score, m.date " +
+            "FROM Meet m " +
+            "JOIN m.teamA t1 " +
+            "JOIN m.teamB t2 " +
+            "WHERE t1.groupName = t2.groupName " +
+            "ORDER BY t1.groupName, m.date DESC")
+    List<Object[]> findMatchesWithTeamsInSameGroup();
 
 }

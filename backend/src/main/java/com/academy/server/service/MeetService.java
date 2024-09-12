@@ -1,11 +1,8 @@
 package com.academy.server.service;
 
-import com.academy.server.dto.match_details_dtos.MatchDetailDTO;
+import com.academy.server.dto.match_details_dtos.*;
 import com.academy.server.dto.MeetDTO;
-import com.academy.server.dto.match_details_dtos.PlayerDTO;
 import com.academy.server.dto.TournamentMatchDTO;
-import com.academy.server.dto.match_details_dtos.TeamADTO;
-import com.academy.server.dto.match_details_dtos.TeamBDTO;
 import com.academy.server.model.Meet;
 import com.academy.server.model.Player;
 import com.academy.server.model.Team;
@@ -39,7 +36,6 @@ public class MeetService {
     public List<MeetDTO> getAll() {
         return this.meetRepository.findAll().stream().map(this::convertToMeetDTO).collect(Collectors.toList());
     }
-
     public List<TournamentMatchDTO> getAllTournamentMatches() {
         List<Object[]> allMatchesData = meetRepository.findAllMatchesData();
         List<TournamentMatchDTO> matches = new ArrayList<>();
@@ -105,6 +101,26 @@ public class MeetService {
         return new MatchDetailDTO(matchId, teamADTO, teamBDTO, score);
     }
 
+    public List<MatchInGroupDTO> getAllGroupMatches() {
+       return this.meetRepository.findMatchesWithTeamsInSameGroup()
+               .stream()
+               .map(this::convertToMatchInGroupDTO)
+               .collect(Collectors.toList());
+    }
+
+    private MatchInGroupDTO convertToMatchInGroupDTO(Object[] dataArr) {
+        Long matchId = (Long) dataArr[0];
+        String teamAName = (String) dataArr[1];
+        String group = (String) dataArr[2];
+        Long teamAId = (Long) dataArr[3];
+        String teamBName = (String) dataArr[4];
+        Long teamBId = (Long) dataArr[5];
+        String score = (String) dataArr[6];
+
+        return new MatchInGroupDTO(
+                matchId, group, teamAName, teamAId, teamBName, teamBId, score
+        );
+    }
     private MeetDTO convertToMeetDTO(Meet meet) {
        return new MeetDTO(
                 meet.getId(),
