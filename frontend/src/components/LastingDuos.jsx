@@ -20,10 +20,8 @@ export default function LastingDuos() {
 
     useEffect(() => {
         if (participation.length > 0) {
-            // Намери максималната стойност на totalTimeTogether
             const maxTime = Math.max(...participation.map(item => item.totalTimeTogether));
             
-            // Филтрирай данните, за да покажеш само тези с максимално totalTimeTogether
             const filtered = participation.filter(item => item.totalTimeTogether === maxTime);
             
             setFilteredParticipation(filtered);
@@ -36,7 +34,7 @@ export default function LastingDuos() {
 
     return (
        <div className="table-container">
-            <h1>Players with most shared time together</h1>
+            <h1>Players With Most Mutual Time</h1>
             <table>
                 <thead>
                     <tr>

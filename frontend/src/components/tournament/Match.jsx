@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Match({ match }) {
+    if (!match) {
+        return <div>No match data available</div>;
+    }
     const { teamAName, teamBName, score } = match;
     const scoreExtracted = score.split('-');
     const matchId = match.id;

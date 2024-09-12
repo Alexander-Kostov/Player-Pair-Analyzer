@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function TeamDetails() {
-    const {teamId} = useParams();
+    const { teamId } = useParams();
 
     const [team, setTeam] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -37,11 +37,11 @@ export default function TeamDetails() {
                 </thead>
                 <tbody>
                     {team.map((team) => (
-                            <tr key={team.id}>
-                                <td>{team.playerNumber}</td>
-                                <td>{team.playerName}</td>
-                                <td>{team.playerPosition}</td>
-                            </tr>
+                        <tr key={team.id}>
+                            <td>{team.playerNumber}</td>
+                            <td>{team.playerName}</td>
+                            <td>{team.playerPosition}</td>
+                        </tr>
                     ))}
                 </tbody>
             </table>

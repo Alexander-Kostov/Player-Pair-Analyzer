@@ -20,6 +20,10 @@ body {
     letter-spacing: 0.8px;
 }
 
+html, body {
+    min-width: 640px;
+}
+
 body::after {
     content: '';
     position: fixed;

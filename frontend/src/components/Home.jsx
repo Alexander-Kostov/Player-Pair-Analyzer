@@ -25,10 +25,10 @@ export default function Home() {
             .then(response => response.json())
             .then(data => {
                 const grouped = data.reduce((acc, match) => {
-                    if (!acc[match.group]) {
-                        acc[match.group] = [];
+                    if (!acc[match?.group]) {
+                        acc[match?.group] = [];
                     }
-                    acc[match.group].push(match);
+                    acc[match?.group].push(match);
                     return acc;
                 }, {});
 
@@ -43,7 +43,7 @@ export default function Home() {
     }
 
     const groupKeys = Object.keys(groupedMatches);
-    const halfwayPoint = Math.ceil(groupKeys.length / 2); 
+    const halfwayPoint = Math.ceil(groupKeys.length / 2);
     const firstHalfGroups = groupKeys.slice(0, halfwayPoint);
     const secondHalfGroups = groupKeys.slice(halfwayPoint);
 
@@ -70,22 +70,25 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 {groupedMatches[groupName].map(match => (
-                                    <tr key={match.id}>
-                                        <td>{match.teamAName}</td>
-                                        <td>{match.teamBName}</td>
-                                        <td>{match.score}</td>
-                                    </tr>
+                                    match && (
+                                        <tr key={match.id}>
+                                            <td>{match.teamAName}</td>
+                                            <td>{match.teamBName}</td>
+                                            <td>{match.score}</td>
+                                        </tr>
+                                    )
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 ))}
             </div>
-
-            <Branch branchId="1" matches={roundOf16th} />
-            <Branch branchId="2" matches={quarterFinals} />
-            <Branch branchId="3" matches={semiFinals} />
-            <Branch branchId="4" matches={finals} />
+            <div className='tournament-container'>
+                <Branch branchId="1" matches={roundOf16th} />
+                <Branch branchId="2" matches={quarterFinals} />
+                <Branch branchId="3" matches={semiFinals} />
+                <Branch branchId="4" matches={finals} />
+            </div>
 
             <div className="second-half-groups">
                 {secondHalfGroups.map(groupName => (
@@ -101,11 +104,13 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 {groupedMatches[groupName].map(match => (
-                                    <tr key={match.id}>
-                                        <td>{match.teamAName}</td>
-                                        <td>{match.teamBName}</td>
-                                        <td>{match.score}</td>
-                                    </tr>
+                                    match && (
+                                        <tr key={match.id}>
+                                            <td>{match.teamAName}</td>
+                                            <td>{match.teamBName}</td>
+                                            <td>{match.score}</td>
+                                        </tr>
+                                    )
                                 ))}
                             </tbody>
                         </table>
