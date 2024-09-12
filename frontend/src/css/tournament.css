@@ -1,21 +1,21 @@
 .container {
     display: flex;
-    margin-left: 20em;
     font-size: 14px;
 }
 
 .branch_1{
     height: 220px; 
-    width: 300px;
+    width: 250px;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     margin-top: 3em;
+    margin-left: 2em;
 }
 
 .branch_2{
     height: 240px; 
-    width: 300px;
+    width: 250px;
     
     flex-wrap: wrap;
     display: flex;
@@ -26,7 +26,7 @@
 
 .branch_3{
     height: 120px; 
-    width: 260px;
+    width: 250px;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
@@ -66,4 +66,37 @@
     background-color: rgba(240, 255, 255, 0.391);
     color: #fff;
     transform: scale(1.23);
+}
+
+
+.group-table {
+    width: 290px;
+    height: 90px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.group-table td, 
+.group-table th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.group-table th {
+    font-weight: bold;
+    background-color: rgba(240, 255, 255, 0.391);
+    cursor: default;
+}
+
+.table-group-name {
+    font-size: 18px;
+}
+
+.first-half-groups {
+    margin-left: 3em;
 }
