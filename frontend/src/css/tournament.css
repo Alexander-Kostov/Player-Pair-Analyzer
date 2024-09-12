@@ -10,24 +10,24 @@
     font-size: 14px;
     flex-wrap: wrap;
     gap: 6.5em;
-    margin-top: 3.4em;
+    margin-top: 1.4em;
 }
 
 .branch_1{
-    width: 120px;
+    width: 127px;
     flex-wrap: wrap;
     display: flex;
     align-content: center;
 }
 
 .branch_2{
-    width: 120px;
+    width: 127px;
     
     flex-wrap: wrap;
     display: flex;
-    gap: 10px;
     align-content: center;
 }
+
 
 .branch_3{
     width: 120px;
@@ -102,5 +102,11 @@
 
 div:first-of-type > h2.table-group-name {
     margin-top: 0;
+}
+
+.tournament-bracket-title {
+    font-size: 1.4em;
+    font-style: italic;
+    padding-bottom: 6px;
 }
 
