@@ -1,0 +1,39 @@
+.teams-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-bottom: 3em;
+}
+
+.teams-container h1 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+tr {
+    transition: 0.5s ease-in;
+}
+
+tr:hover {
+    background-color: rgba(240, 255, 255, 0.391);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+th, td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+    background-color: rgba(240, 255, 255, 0.391);
+    cursor: default;
+}
+
