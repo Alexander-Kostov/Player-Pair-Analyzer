@@ -5,7 +5,6 @@ import Players from "./components/Players"
 import Participations from "./components/Participations"
 import LastingDuos from "./components/LastingDuos"
 import Layout from "./components/Layout"
-import Matches from "./components/Matches"
 import SingleMatchComponent from "./components/MatchDetails"
 import TeamDetails from "./components/TeamDetails"
 
@@ -20,7 +19,6 @@ function App() {
 
                 <Route path="/players" element={<Players />} />
 
-                <Route path="/matches" element={<Matches/>} />
                 <Route path="/matches/:matchId" element={<SingleMatchComponent />} />
 
                 <Route path="/participations" element={<Participations />} />

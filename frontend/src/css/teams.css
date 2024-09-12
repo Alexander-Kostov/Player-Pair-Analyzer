@@ -1,13 +1,14 @@
-.teams-container {
+.table-container {
 display: flex;
 flex-direction: column;
 align-items: center;
 padding-bottom: 3em;
 }
 
-.teams-container h1 {
+.table-container > h1 {
     margin-bottom: 20px;
 }
+
 
 table {
     width: 70%;
@@ -22,6 +23,9 @@ tr {
 tr:hover {
     background-color: rgba(240, 255, 255, 0.391);
     transform: scale(1.1);
+}
+
+.teams-row {
     cursor: pointer;
 }
 

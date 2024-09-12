@@ -25,6 +25,7 @@ export default function Home() {
 
     const tournamentFinals = matchesData.slice(0, 15)
     const groups = matchesData.slice(15);
+    console.log(groups)
 
     const roundOf16th = tournamentFinals.slice(7);
     const quarterFinals = tournamentFinals.slice(3, 7)
@@ -33,10 +34,21 @@ export default function Home() {
 
     return (
         <div className="container">
+            <div>
+                <table>
+                    <th>Hello World</th>
+                </table>
+            </div>
             <Branch branchId="1" matches={roundOf16th} />
             <Branch branchId="2" matches={quarterFinals} />
             <Branch branchId="3" matches={semiFinals} />
             <Branch branchId="4" matches={finals} />
+
+            <div>
+                <table>
+                    <th>Hello World</th>
+                </table>
+            </div>
         </div>
     )
 }

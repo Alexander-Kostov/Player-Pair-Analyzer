@@ -6,7 +6,6 @@ export default function Header() {
         { title: 'Home', path: '/', position: 'left', icon: 'fa-solid fa-house' },
         { title: 'Teams', path: '/teams', position: 'left', icon: 'fa-solid fa-people-group' },
         { title: 'Players', path: '/players', position: 'left', icon: 'fa-solid fa-user' },
-        { title: 'Matches', path: '/matches', position: 'left', icon: 'fa-solid fa-list-ol' },
 
         { title: 'Participations', path: '/participations', position: 'right', icon: 'fa-solid fa-clock' },
         { title: 'Lasting Duos', path: '/participations/lasting-duos', position: 'right', icon: 'fa-solid fa-people-arrows' },

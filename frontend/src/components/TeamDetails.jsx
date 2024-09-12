@@ -23,12 +23,10 @@ export default function TeamDetails() {
         return <div>Loading...</div>
     }
 
-    console.log(team)
-
 
     return (
-        <div className="teams-container">
-            <h1>{team[0].teamName}</h1>
+        <div className="table-container">
+            <h1>{team[0].teamName + ' Players'}</h1>
             <table border="1">
                 <thead>
                     <tr>

@@ -29,29 +29,28 @@ export default function Teams() {
     };
 
     return (
-        <div className="teams-container">
+        <div className="table-container">
             <h1>Teams</h1>
-
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Group Name</th>
-                        <th>Manager</th>
-                        <th>Country</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {teams.map((team) => (
-                            <tr key={team.id} onClick={() => handleRowClick(team.id)}>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Group Name</th>
+                            <th>Manager</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teams.map((team) => (
+                            <tr key={team.id} onClick={() => handleRowClick(team.id)} className='teams-row'>
                                 <td>{team.id}</td>
                                 <td>{team.groupName}</td>
                                 <td>{team.manager}</td>
                                 <td>{team.name}</td>
                             </tr>
-                    ))}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+                </table>
         </div>
     )
 }
