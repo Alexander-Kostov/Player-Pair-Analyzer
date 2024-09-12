@@ -1,6 +1,7 @@
 package com.academy.server.service;
 
 import com.academy.server.dto.PlayerInTeamDTO;
+import com.academy.server.dto.TeamDetailsDTO;
 import com.academy.server.dto.TeamWithPlayersDTO;
 import com.academy.server.dto.TeamWithoutPlayersDTO;
 import com.academy.server.model.Team;
@@ -8,6 +9,7 @@ import com.academy.server.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -65,8 +67,25 @@ public class TeamService {
                 team.getManager(),
                 team.getGroupName(),
                 playerInTeamDTOS
-                );
+        );
     }
 
 
+    public List<TeamDetailsDTO> getTeamDetails(Long teamId) {
+        List<Object[]> results = teamRepository.findPlayerDataByTeamId(teamId);
+        List<TeamDetailsDTO> playerDTOs = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Long id = (Long) result[0];
+            String teamName = (String) result[1];
+            Integer playerNumber = (Integer) result[2];
+            String playerName = (String) result[3];
+            String position = (String) result[4];
+
+            TeamDetailsDTO dto = new TeamDetailsDTO(id, teamName, playerNumber, playerName, position);
+            playerDTOs.add(dto);
+        }
+
+        return playerDTOs;
+    }
 }
