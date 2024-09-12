@@ -1,7 +1,8 @@
 package com.academy.server.service;
 
 import com.academy.server.dto.PlayerInTeamDTO;
-import com.academy.server.dto.TeamDTO;
+import com.academy.server.dto.TeamWithPlayersDTO;
+import com.academy.server.dto.TeamWithoutPlayersDTO;
 import com.academy.server.model.Team;
 import com.academy.server.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public List<TeamDTO> getAll() {
+    public List<TeamWithPlayersDTO> getAll() {
         return teamRepository.findAll()
                 .stream()
-                .map(this::convertToDTO)
+                .map(this::convertToDTOWithPlayers)
                 .collect(Collectors.toList());
     }
 
@@ -32,7 +33,23 @@ public class TeamService {
         return teamRepository.findById(id);
     }
 
-    private TeamDTO convertToDTO(Team team) {
+    public List<TeamWithoutPlayersDTO> getTeamsWithoutPlayers() {
+        return this.teamRepository.findAll()
+                .stream()
+                .map(this::convertToDTOWithoutPlayers)
+                .collect(Collectors.toList());
+    }
+
+    private TeamWithoutPlayersDTO convertToDTOWithoutPlayers(Team team) {
+        return new TeamWithoutPlayersDTO(
+                team.getId(),
+                team.getName(),
+                team.getManager(),
+                team.getGroupName()
+        );
+    }
+
+    private TeamWithPlayersDTO convertToDTOWithPlayers(Team team) {
         List<PlayerInTeamDTO> playerInTeamDTOS = team.getPlayers().stream()
                 .map(player -> new PlayerInTeamDTO(
                         player.getId(),
@@ -42,7 +59,7 @@ public class TeamService {
                 ))
                 .collect(Collectors.toList());
 
-        return new TeamDTO(
+        return new TeamWithPlayersDTO(
                 team.getId(),
                 team.getName(),
                 team.getManager(),
@@ -50,4 +67,6 @@ public class TeamService {
                 playerInTeamDTOS
                 );
     }
+
+
 }
