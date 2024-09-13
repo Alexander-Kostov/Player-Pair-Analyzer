@@ -1,26 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useGetTeamDetails } from '../queries/useGetTeamDetails';
 
 export default function TeamDetails() {
-    const { teamId } = useParams();
+    const { data: team, error, isLoading } = useGetTeamDetails();
 
-    const [team, setTeam] = useState([]);
-    const [loading, setLoading] = useState(true);
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
-    useEffect(() => {
-        fetch(`http://localhost:8080/teams/${teamId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setTeam(data);
-                setLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching teams:', error);
-            });
-    }, []);
+    if (error) {
+        return <div>Error fetching team details: {error.message}</div>;
+    }
 
-    if (loading) {
-        return <div>Loading...</div>
+    if (!team || team.length === 0) {
+        return <div>No team details available.</div>;
     }
 
 

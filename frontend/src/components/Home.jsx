@@ -1,56 +1,29 @@
-import { useEffect, useState } from 'react';
 import Branch from './tournament/Branch';
 import '../css/tournament.css';
+import { useGetTournamentData } from '../queries/useGetTournamentData';
+import { useGetGroupData } from '../queries/useGetGroupData';
 
 export default function Home() {
-    const [matchesData, setMatchesData] = useState([]);
-    const [groupedMatches, setGroupedMatches] = useState({});
-    const [loading, setLoading] = useState(true);
+    const { data: matchesData = [], isLoading: matchesLoading, error: matchesError } = useGetTournamentData();
 
-    useEffect(() => {
-        fetch('http://localhost:8080/meets/tournament-data')
-            .then(response => response.json())
-            .then(data => {
-                setMatchesData(data)
-                setLoading(false)
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error)
-                setLoading(false)
-            });
-    }, []);
+    const { data: groupedMatchesData = [], isLoading: groupedMatchesLoading, error: groupedMatchesError } = useGetGroupData();
 
-    useEffect(() => {
-        fetch("http://localhost:8080/meets/group-data")
-            .then(response => response.json())
-            .then(data => {
-                const grouped = data.reduce((acc, match) => {
-                    if (!acc[match?.group]) {
-                        acc[match?.group] = [];
-                    }
-                    acc[match?.group].push(match);
-                    return acc;
-                }, {});
-
-                setGroupedMatches(grouped);
-                setLoading(false)
-            })
-            .catch(error => console.error("Error fetching data:", error));
-    }, []);
-
-    if (loading) {
+    if (matchesLoading || groupedMatchesLoading) {
         return <div>Loading...</div>;
     }
 
-    const groupKeys = Object.keys(groupedMatches);
+    if (matchesError || groupedMatchesError) {
+        return <div>Error fetching data!</div>;
+    }
+
+    const groupKeys = Object.keys(groupedMatchesData);
     const halfwayPoint = Math.ceil(groupKeys.length / 2);
     const firstHalfGroups = groupKeys.slice(0, halfwayPoint);
     const secondHalfGroups = groupKeys.slice(halfwayPoint);
 
-    const tournamentFinals = matchesData.slice(0, 15)
-
+    const tournamentFinals = matchesData.slice(0, 15);
     const roundOf16th = tournamentFinals.slice(7);
-    const quarterFinals = tournamentFinals.slice(3, 7)
+    const quarterFinals = tournamentFinals.slice(3, 7);
     const semiFinals = tournamentFinals.slice(1, 3);
     const finals = [tournamentFinals[0]];
 
@@ -69,7 +42,7 @@ export default function Home() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {groupedMatches[groupName].map(match => (
+                                {groupedMatchesData[groupName].map(match => (
                                     match && (
                                         <tr key={match.id}>
                                             <td>{match.teamAName}</td>
@@ -89,7 +62,6 @@ export default function Home() {
                 <Branch branchId="3" matches={semiFinals} />
                 <Branch branchId="4" matches={finals} />
             </div>
-
             <div className="second-half-groups">
                 {secondHalfGroups.map(groupName => (
                     <div key={groupName}>
@@ -103,7 +75,7 @@ export default function Home() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {groupedMatches[groupName].map(match => (
+                                {groupedMatchesData[groupName].map(match => (
                                     match && (
                                         <tr key={match.id}>
                                             <td>{match.teamAName}</td>
