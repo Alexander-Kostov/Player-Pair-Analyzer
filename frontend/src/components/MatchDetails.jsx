@@ -1,30 +1,19 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-
+import { useGetMatchDetails } from '../queries/useGetMatchDetails';
 
 export default function SingleMatchComponent() {
 
-    const { matchId } = useParams()
+    const { data: match, error, isLoading } = useGetMatchDetails();
 
-    const [match, setMatch] = useState(null);
-    const [loading, setLoading] = useState(true);
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
-    useEffect(() => {
+    if (error) {
+        return <div>Error fetching match details: {error.message}</div>;
+    }
 
-        fetch(`http://localhost:8080/meets/${matchId}/details`)
-            .then(response => response.json())
-            .then(data => {
-                setMatch(data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching match details:', error);
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading || !match) {
-        return <div>Loading...</div>
+    if (!match) {
+        return <div>No match details available.</div>;
     }
 
     const teamA = match.teamADTO;
@@ -48,7 +37,6 @@ export default function SingleMatchComponent() {
         FW: playersB.filter(player => player.position === 'FW')
     };
 
-    console.log(playersA)
     return (
         <div className="match-details-container">
             <div className="field-image">

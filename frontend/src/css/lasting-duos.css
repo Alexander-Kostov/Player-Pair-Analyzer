@@ -1,0 +1,57 @@
+.next-page {
+    width: 70%;
+    text-align: end;
+    position: relative;
+}
+
+.previous-page {
+    width: 70%;
+    text-align: start;
+    position: relative;
+}
+
+.previous-page .hover-text {
+    left: 32px;
+}
+
+.next-page .hover-text {
+    right: 42px;
+}
+
+.fa-forward, .fa-backward {
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+    transition: color 0.5s ease;
+    padding: 12px 2px;
+    position: relative;
+}
+
+.fa-forward:hover, .fa-backward:hover {
+    cursor: pointer;
+    color: #45f1bab8;
+}
+
+.hover-text {
+    position: absolute;
+    font-size: 18px;
+    bottom: 11px;
+    padding: 5px;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    font-family: 'Oswald', 'sans-serif';
+}
+
+.fa-forward:hover .hover-text {
+    right: 32px; /* Позиция за .fa-forward */
+    opacity: 1;
+    visibility: visible;
+}
+
+.fa-backward:hover .hover-text {
+    left: 32px;
+    opacity: 1;
+    visibility: visible;
+}

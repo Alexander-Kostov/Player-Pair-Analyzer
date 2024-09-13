@@ -1,27 +1,19 @@
 import '../css/teams.css'
-import { useState, useEffect } from 'react';
+import { useGetTeamsData } from '../queries/useGetTeamsData';
+
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Teams() {
 
-    const [teams, setTeams] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { data: teams, error, isLoading } = useGetTeamsData();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch('http://localhost:8080/teams/without-players')
-            .then((response) => response.json())
-            .then((data) => {
-                setTeams(data);
-                setLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching teams:', error);
-            });
-    }, []);
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
-    if (loading) {
-        return <div>Loading...</div>
+    if (error) {
+        return <div>Error fetching teams: {error.message}</div>;
     }
 
     const handleRowClick = (teamId) => {
