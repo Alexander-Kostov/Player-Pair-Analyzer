@@ -36,7 +36,7 @@
 </a>
 
 
-### API Endpoints
+## API Endpoints
 ### Main Url: localhost:8080
 
 Here are the available API endpoints for this application:
@@ -147,6 +147,47 @@ Here are the available API endpoints for this application:
 - **Response:** 
   - **Status Code:** 200 OK
   - **Body:** JSON array of participation objects.
+
+## Database Entities
+
+#### **Player**
+- **Description:** Represents a football player.
+- **Attributes:**
+  - `id`: Unique player identifier.
+  - `name`: Full name.
+  - `teamId`: References the player's team.
+  - `position`: Playing position.
+- **Relationships:** Linked to `Team` and `Participation`.
+
+#### **Team**
+- **Description:** Represents a football team.
+- **Attributes:**
+  - `id`: Unique team identifier.
+  - `name`: Team name.
+  - `group`: Tournament group.
+- **Relationships:** Contains `Player` entities and participates in `Match` entities.
+
+#### **Match**
+- **Description:** Represents a football match between two teams.
+- **Attributes:**
+  - `id`: Unique match identifier.
+  - `date`: Match date.
+  - `teamA_id`: First team.
+  - `teamB_id`: Second team.
+  - `score`: Match result.
+- **Relationships:** References `Team` entities and has `Participation` records.
+
+#### **Participation**
+- **Description:** Represents a player’s involvement in a match.
+- **Attributes:**
+  - `id`: Unique participation identifier.
+  - `playerId`: References the player.
+  - `matchId`: References the match.
+  - `minutesPlayed`: Minutes played in the match.
+- **Relationships:** Linked to `Player` and `Match`.
+
+### EER Diagram
+![image](https://github.com/user-attachments/assets/dc56e28e-ccb5-4690-87b5-a8358a13b7b6)
 
 ### Notes
 
