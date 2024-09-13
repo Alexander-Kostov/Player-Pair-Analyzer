@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom"
 import Home from "./components/Home"
-import Teams from "./components/Teams"
-import Players from "./components/Players"
-import LastingDuos from "./components/LastingDuosAll"
+import Teams from "./components/teams/Teams"
+import Players from "./components/players/Players"
 import Layout from "./components/Layout"
-import SingleMatchComponent from "./components/MatchDetails"
-import TeamDetails from "./components/TeamDetails"
-import LastingDuosFromDifferentTeams from "./components/LastingDuosFromDifferentTeams"
+import SingleMatchComponent from "./components/tournament/MatchDetails"
+import TeamDetails from "./components/teams//TeamDetails"
 import Participations from "./components/Participations"
+import LastingDuosAll from "./components/lasting-duos/LastingDuosAll";
+import LastingDuosFromDifferentTeams from "./components/lasting-duos/LastingDuosFromDifferentTeams";
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
                 <Route path="/matches/:matchId" element={<SingleMatchComponent />} />
 
                 <Route path="/participations" element={<Participations />} />
-                <Route path="/participations/lasting-duos" element={<LastingDuos />} />
+                <Route path="/participations/lasting-duos" element={<LastingDuosAll />} />
                 <Route path="/participations/lasting-duos-from-different-teams" element={<LastingDuosFromDifferentTeams />} />
             </Routes>
         </Layout>

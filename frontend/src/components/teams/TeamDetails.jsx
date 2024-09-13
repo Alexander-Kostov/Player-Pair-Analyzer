@@ -1,4 +1,4 @@
-import { useGetTeamDetails } from '../queries/useGetTeamDetails';
+import { useGetTeamDetails } from '../../queries/useGetTeamDetails';
 
 export default function TeamDetails() {
     const { data: team, error, isLoading } = useGetTeamDetails();

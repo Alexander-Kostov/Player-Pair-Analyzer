@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-export function useGetMostTimeDuos() {
+export function useGetMostTimeDuosData() {
     return useQuery({
         queryKey: ['most-time-duos'],
         queryFn: async () => {

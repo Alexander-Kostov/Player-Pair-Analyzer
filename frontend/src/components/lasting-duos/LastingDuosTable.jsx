@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import '../css/lasting-duos.css';
+import '../../css/lasting-duos.css';
 
 export default function LastingDuosTable({ data, title, iconClass, navigateTo, divPageClass }) {
     const navigate = useNavigate();

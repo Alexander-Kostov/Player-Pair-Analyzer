@@ -1,4 +1,4 @@
-import { useGetMatchDetails } from '../queries/useGetMatchDetails';
+import { useGetMatchDetails } from '../../queries/useGetMatchDetails';
 
 export default function SingleMatchComponent() {
 

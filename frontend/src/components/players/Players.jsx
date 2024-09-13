@@ -1,4 +1,4 @@
-import { useGetPlayersData } from "../queries/useGetPlayersData";
+import { useGetPlayersData } from "../../queries/useGetPlayersData";
 
 export default function Players() {
     const { data: players, error, isLoading } = useGetPlayersData();

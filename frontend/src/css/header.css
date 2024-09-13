@@ -16,7 +16,6 @@
     display: flex;
 }
 
-
 .nav-right {
     margin-right: 3em;
 }
@@ -41,7 +40,6 @@
     margin-bottom: 0.3em;
     transition: color 0.5s ease;
 }
-
 
 .nav-item:hover {
     i {

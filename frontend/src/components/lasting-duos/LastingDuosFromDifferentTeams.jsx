@@ -1,4 +1,4 @@
-import { useGetMostTimeDuosFromDifferentTeams } from '../queries/useGetMostTimeDuosDataFromDifferentTeams';
+import { useGetMostTimeDuosFromDifferentTeams } from '../../queries/useGetMostTimeDuosDataFromDifferentTeams';
 import LastingDuosTable from './LastingDuosTable';
 
 export default function LastingDuosFromDifferentTeams() {

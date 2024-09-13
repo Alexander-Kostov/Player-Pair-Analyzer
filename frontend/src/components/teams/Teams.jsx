@@ -1,5 +1,5 @@
-import '../css/teams.css'
-import { useGetTeamsData } from '../queries/useGetTeamsData';
+import '../../css/teams.css'
+import { useGetTeamsData } from '../../queries/useGetTeamsData';
 
 import { Link, useNavigate } from 'react-router-dom';
 

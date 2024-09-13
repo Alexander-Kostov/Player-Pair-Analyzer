@@ -1,10 +1,10 @@
-import { useGetMostTimeDuos } from '../queries/useGetMostTimeDuosData';
-import '../css/lasting-duos.css';
+import '../../css/lasting-duos.css';
+import { useGetMostTimeDuosData } from '../../queries/useGetMostTimeDuosData';
 import LastingDuosTable from './LastingDuosTable';
 
-export default function LastingDuos() {
+export default function LastingDuosAll() {
 
-    const { data, error, isLoading } = useGetMostTimeDuos();
+    const { data, error, isLoading } = useGetMostTimeDuosData();
 
     if (isLoading) {
         return <div>Loading...</div>;
