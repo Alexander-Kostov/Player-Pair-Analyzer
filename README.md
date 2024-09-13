@@ -33,3 +33,117 @@
 </a>
 
 
+### API Endpoints
+### Main Url: localhost:8080
+
+Here are the available API endpoints for this application:
+#### Team Controller
+
+#### `/teams/with-players`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all teams with an array of players.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of team objects.
+
+#### `/teams/without-players`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all teams without an array of players.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of team objects.
+
+#### `/teams/{teamId}`
+
+- **Method:** GET
+- **Description:** Retrieves an array of team with all its players.
+- **Request Parameters:**
+  - **Path Parameter:** `id` (Long) - The ID of the team.
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON object with team details.
+  - **Status Code:** 404 Not Found (if team with specified ID does not exist)
+
+#### Meet Controller
+
+#### `/meets/all`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all matches.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of match objects.
+
+#### `/meets/tournament-data`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all tournament matches.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of match objects.
+
+#### `/meets/group-data`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all matches in group stage.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of match objects.
+
+#### `/meets/{id}/details`
+
+- **Method:** GET
+- **Description:** Retrieves details of a specific match by its ID.
+- **Request Parameters:**
+  - **Path Parameter:** `id` (Long) - The ID of the match.
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON object with match details.
+  - **Status Code:** 404 Not Found (if match with specified ID does not exist)
+
+#### `/players/all`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all players.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of player objects.
+
+#### `/participations/all-time`
+
+- **Method:** GET
+- **Description:** Retrieves a list of players who have accumulated the most mutual playtime in common matches. This endpoint returns an array of player pairs, each representing players who have played the most time together in matches.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of participation objects.
+
+#### `/participations/different-teams-time`
+
+- **Method:** GET
+- **Description:** Retrieves a list of player pairs who have accumulated the most mutual playtime in common matches but played for different teams. This endpoint filters out player pairs from the same team and returns only those from opposing teams.from different teams.
+- **Request Parameters:**
+  - **Path Parameter:** `id` (integer) - The ID of the participation.
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON object with participation details.
+  - **Status Code:** 404 Not Found (if participation with specified ID does not exist)
+#### `/participations/all`
+
+- **Method:** GET
+- **Description:** Retrieves an array of all the player and their participation times in all matches.
+- **Request Parameters:** None
+- **Response:** 
+  - **Status Code:** 200 OK
+  - **Body:** JSON array of participation objects.
+
+### Notes
+
