@@ -1,6 +1,9 @@
 # Introduction
-- This is a web application which aims to provide detailed information about Euro Cup 2024 stats.
-- This project is a full-stack application
+- This web application provides comprehensive statistics for the Euro Cup 2024.
+- Data is imported into the application from CSV files, ensuring efficient data ingestion.
+- The backend API server interacts with the database to retrieve and structure the data.
+- The structured data is then presented to users through the front-end interface in the browser.
+- This project is a full-stack application, integrating both backend and frontend technologies for a seamless user experience.
 
 ### Backend built with:
 <a href="https://www.java.com" target="_blank" rel="noreferrer">
