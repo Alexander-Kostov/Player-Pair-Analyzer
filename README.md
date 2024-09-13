@@ -196,6 +196,8 @@ Here are the available API endpoints for this application:
 
 The front-end part of the application is built using React, ensuring a dynamic and responsive user experience. The data retrieved from the backend API is displayed in a structured and user-friendly manner, allowing users to easily explore the Euro Cup 2024 statistics.
 
+***The frontend is mainly responsible for visualizing the matches in bracket view, single match details and roster view of all players in a team. It also allows users to browse through the different matches, view teams, and players, and see detailed statistics. The data is fetched from the backend and displayed using modern React components and responsive layouts.***
+
 ### Key Features:
 - **React Components**: The application is divided into reusable components for better scalability and maintainability.
 - **Data Fetching**: Utilizes **React Query** for efficient and optimized data fetching and caching.
