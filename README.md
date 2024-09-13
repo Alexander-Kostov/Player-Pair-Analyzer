@@ -189,5 +189,43 @@ Here are the available API endpoints for this application:
 ### EER Diagram
 ![image](https://github.com/user-attachments/assets/dc56e28e-ccb5-4690-87b5-a8358a13b7b6)
 
-### Notes
+## Backend Logic Displayed
+![image](https://github.com/user-attachments/assets/a38da0b0-dd06-4e83-ae62-414c249e9307)
+
+## Frontend Overview
+
+The front-end part of the application is built using React, ensuring a dynamic and responsive user experience. The data retrieved from the backend API is displayed in a structured and user-friendly manner, allowing users to easily explore the Euro Cup 2024 statistics.
+
+### Key Features:
+- **React Components**: The application is divided into reusable components for better scalability and maintainability.
+- **Data Fetching**: Utilizes **React Query** for efficient and optimized data fetching and caching.
+- **CSS Grid and Flexbox Layout**: The application uses modern CSS techniques for building responsive layouts.
+- **Interactive UI**: Provides users with filters, sorting options, and detailed views for teams, players, and match statistics.
+
+### Tools & Libraries Used:
+- **React** for building the UI components.
+- **React Query** for data fetching and caching.
+- **CSS (Flexbox & Grid)** for styling and responsive design.
+- **JavaScript** for dynamic behavior.
+
+### Images
+
+#### Home Page
+
+![image](https://github.com/user-attachments/assets/27531c9d-a147-4aab-aeec-c190aa61659d)
+
+### Custom Match
+
+![image](https://github.com/user-attachments/assets/b5e11196-dc44-429a-9c74-94a4c175ed0b)
+
+### All Players
+
+![image](https://github.com/user-attachments/assets/7e910f27-dc64-436b-bcc0-3ad6717d272a)
+
+### Team Players by ID
+
+![image](https://github.com/user-attachments/assets/1a8c9ac7-37be-4a4c-a852-8ef2e7b28c5d)
+
+### Players With Most Mutual Time
+![image](https://github.com/user-attachments/assets/0937cf3c-fa4c-46b6-a6ec-db8922dfe96b)
 
