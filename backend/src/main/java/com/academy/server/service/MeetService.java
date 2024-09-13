@@ -1,11 +1,9 @@
 package com.academy.server.service;
 
 import com.academy.server.dto.match_details_dtos.*;
-import com.academy.server.dto.MeetDTO;
-import com.academy.server.dto.TournamentMatchDTO;
+import com.academy.server.dto.match_details_dtos.MeetDTO;
+import com.academy.server.dto.match_details_dtos.TournamentMatchDTO;
 import com.academy.server.model.Meet;
-import com.academy.server.model.Player;
-import com.academy.server.model.Team;
 import com.academy.server.repository.MeetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,25 +20,34 @@ import java.util.stream.Collectors;
 
 @Service
 public class MeetService {
+
     @Autowired
     private MeetRepository meetRepository;
+
     @Autowired
     private TeamService teamService;
+
     @Autowired
     private PlayerService playerService;
+
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     public void saveMeets(List<Meet> meets) {
         meetRepository.saveAll(meets);
+
     }
 
     public List<MeetDTO> getAll() {
         return this.meetRepository.findAll().stream().map(this::convertToMeetDTO).collect(Collectors.toList());
+
     }
     public List<TournamentMatchDTO> getAllTournamentMatches() {
+
         List<Object[]> allMatchesData = meetRepository.findAllMatchesData();
         List<TournamentMatchDTO> matches = new ArrayList<>();
 
         for (Object[] result : allMatchesData) {
+
             Long id = (Long) result[0];
             String teamAName = (String) result[1];
             Long teamAId = (Long) result[2];
@@ -55,6 +62,7 @@ public class MeetService {
             TournamentMatchDTO match = new TournamentMatchDTO(id, teamAName, teamAId, teamBName, teamBId, score,
                     localDate);
             matches.add(match);
+
         }
 
         return matches;
@@ -65,6 +73,7 @@ public class MeetService {
 
         if (results.isEmpty()) {
             return null;
+
         }
 
         Object[] firstRow = results.get(0);
@@ -87,10 +96,12 @@ public class MeetService {
 
             if (playerTeamId.equals(teamAId)) {
                 playersA.add(playerDTO);
+
             } else {
                 teamBId = ((Long) row[4]);
                 teamBName = ((String) row[5]);
                 playersB.add(playerDTO);
+
             }
 
         }
@@ -106,6 +117,7 @@ public class MeetService {
                .stream()
                .map(this::convertToMatchInGroupDTO)
                .collect(Collectors.toList());
+
     }
 
     private MatchInGroupDTO convertToMatchInGroupDTO(Object[] dataArr) {
@@ -120,6 +132,7 @@ public class MeetService {
         return new MatchInGroupDTO(
                 matchId, group, teamAName, teamAId, teamBName, teamBId, score
         );
+
     }
     private MeetDTO convertToMeetDTO(Meet meet) {
        return new MeetDTO(
@@ -129,9 +142,11 @@ public class MeetService {
                 simpleDateFormat.format(meet.getDate()),
                 meet.getScore()
         );
+
     }
 
     public Optional<Meet> findMeetById(Long meetId) {
         return meetRepository.findById(meetId);
+
     }
 }

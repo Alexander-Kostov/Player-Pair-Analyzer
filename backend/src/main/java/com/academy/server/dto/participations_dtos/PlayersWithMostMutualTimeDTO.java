@@ -1,4 +1,4 @@
-package com.academy.server.dto;
+package com.academy.server.dto.participations_dtos;
 
 public class PlayersWithMostMutualTimeDTO {
     private String player1;

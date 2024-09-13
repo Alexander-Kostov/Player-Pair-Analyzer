@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 public class Team {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,6 +16,7 @@ public class Team {
     private String manager;
 
     private String groupName;
+
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 

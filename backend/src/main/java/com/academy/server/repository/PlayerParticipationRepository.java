@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerParticipationRepository extends JpaRepository<PlayerParticipation, Long> {
+
     @Query(value = """
         WITH PlayerPeriods AS (
             SELECT

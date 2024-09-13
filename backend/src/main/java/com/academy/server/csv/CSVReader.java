@@ -22,6 +22,7 @@ import java.util.List;
 
 @Component
 public class CSVReader {
+
     @Autowired
     private InputValidator inputValidator;
     @Autowired
@@ -47,6 +48,7 @@ public class CSVReader {
                 System.out.println("Teams file line " + lineNum + "is empty");
                 System.out.println("Empty lines are not allowed for data integrity");
                 return null;
+
             }
 
             while ((line = br.readLine()) != null) {
@@ -60,12 +62,15 @@ public class CSVReader {
 
                     Team team = new Team(country, manager, group);
                     teams.add(team);
+
                 } else {
                     System.out.println("Please try again with valid data");
                     return null;
+
                 }
 
                 lineNum++;
+
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println(fileNotFoundException.getMessage() + "Error");
@@ -129,6 +134,7 @@ public class CSVReader {
             if ((line = br.readLine()) == null) {
                 System.out.println("Matches file is empty.");
                 return meets;
+
             }
 
             while ((line = br.readLine()) != null) {
@@ -146,6 +152,7 @@ public class CSVReader {
                         System.out.println("Invalid team IDs at line " + lineNum);
                         lineNum++;
                         continue;
+
                     }
 
                     String inputDate = data[3];
@@ -155,6 +162,7 @@ public class CSVReader {
                         System.out.println("Invalid date format at line " + lineNum);
                         lineNum++;
                         return null;
+
                     }
 
                     String result = data[4];
@@ -165,6 +173,7 @@ public class CSVReader {
                 } else {
                     System.out.println("Please try again with valid data");
                     return null;
+
                 }
 
                 lineNum++;
@@ -189,6 +198,7 @@ public class CSVReader {
                 System.out.println("Records file line " + lineNum + "is empty");
                 System.out.println("Empty lines are not allowed for data integrity");
                 return null;
+
             }
 
             while ((line = br.readLine()) != null) {
@@ -204,10 +214,13 @@ public class CSVReader {
 
                     int fromMin = Integer.parseInt(data[3]);
                     int toMin;
+
                     if (data[4].equals("NULL")) {
                         toMin = 90;
+
                     } else {
                         toMin = Integer.parseInt(data[4]);
+
                     }
 
                     PlayerParticipation playerParticipation = new PlayerParticipation(
@@ -218,9 +231,11 @@ public class CSVReader {
                     );
 
                     playerParticipations.add(playerParticipation);
+
                 } else {
                     System.out.println("Please try again with valid data");
                     return null;
+
                 }
 
                 lineNum++;

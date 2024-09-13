@@ -13,7 +13,6 @@ public class MatchDetailDTO {
         this.teamBDTO = teamBDTO;
         this.score = score;
     }
-
     public Long getMatchId() {
         return matchId;
     }

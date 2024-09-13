@@ -6,12 +6,15 @@ import java.util.Date;
 
 @Entity
 public class Meet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "team_a_id", nullable = false)
     private Team teamA;
+
     @ManyToOne
     @JoinColumn(name = "team_b_id", nullable = false)
     private Team teamB;

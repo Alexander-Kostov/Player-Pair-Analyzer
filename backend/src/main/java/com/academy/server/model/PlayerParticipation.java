@@ -11,6 +11,7 @@ public class PlayerParticipation {
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
+
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Meet meet;

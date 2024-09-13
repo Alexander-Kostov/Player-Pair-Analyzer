@@ -1,20 +1,16 @@
-package com.academy.server.dto;
+package com.academy.server.dto.teams_dtos;
 
-import java.util.List;
-
-public class TeamWithPlayersDTO {
+public class TeamWithoutPlayersDTO {
     private Long id;
     private String name;
     private String manager;
     private String groupName;
-    private List<PlayerInTeamDTO> players;
 
-    public TeamWithPlayersDTO(Long id, String name, String manager, String groupName, List<PlayerInTeamDTO> players) {
+    public TeamWithoutPlayersDTO(Long id, String name, String manager, String groupName) {
         this.id = id;
         this.name = name;
         this.manager = manager;
         this.groupName = groupName;
-        this.players = players;
     }
 
     public Long getId() {
@@ -47,13 +43,5 @@ public class TeamWithPlayersDTO {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
-    }
-
-    public List<PlayerInTeamDTO> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<PlayerInTeamDTO> players) {
-        this.players = players;
     }
 }

@@ -1,20 +1,17 @@
-package com.academy.server.dto;
+package com.academy.server.dto.player_dtos;
 
-public class SeparatePlayerDTO {
+public class PlayerInTeamDTO {
     private Long id;
     private String fullName;
     private int teamNumber;
     private String position;
-    private String teamName;
 
-    public SeparatePlayerDTO(Long id, String fullName, int teamNumber, String position, String teamName) {
+    public PlayerInTeamDTO(Long id, String fullName, int teamNumber, String position) {
         this.id = id;
         this.fullName = fullName;
         this.teamNumber = teamNumber;
         this.position = position;
-        this.teamName = teamName;
     }
-
     public Long getId() {
         return id;
     }
@@ -47,11 +44,4 @@ public class SeparatePlayerDTO {
         this.position = position;
     }
 
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
 }

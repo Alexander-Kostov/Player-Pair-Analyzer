@@ -1,7 +1,7 @@
 package com.academy.server.controller;
 
-import com.academy.server.dto.PlayerParticipationDTO;
-import com.academy.server.dto.PlayersWithMostMutualTimeDTO;
+import com.academy.server.dto.participations_dtos.PlayerParticipationDTO;
+import com.academy.server.dto.participations_dtos.PlayersWithMostMutualTimeDTO;
 import com.academy.server.service.PlayerParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

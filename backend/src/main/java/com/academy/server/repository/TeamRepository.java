@@ -14,4 +14,5 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
             "FROM Player p JOIN p.team t " +
             "WHERE t.id = :teamId")
     List<Object[]> findPlayerDataByTeamId(@Param("teamId") Long teamId);
+
 }

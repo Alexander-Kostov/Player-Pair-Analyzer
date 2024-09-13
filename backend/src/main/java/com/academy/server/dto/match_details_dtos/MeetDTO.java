@@ -1,4 +1,4 @@
-package com.academy.server.dto;
+package com.academy.server.dto.match_details_dtos;
 
 import java.util.Date;
 

@@ -19,12 +19,16 @@ import java.util.Optional;
 
 @Component
 public class InputValidator implements Validation {
+
     @Autowired
     private TeamService teamService;
+
     @Autowired
     private PlayerService playerService;
+
     @Autowired
     private MeetService meetService;
+
     @Autowired
     private DateParser dateParser;
 
@@ -35,6 +39,7 @@ public class InputValidator implements Validation {
         if (data.length != 4) {
             System.out.println("Invalid number of parameters at line " + lineNum);
             return false;
+
         }
 
         String country = data[1];
@@ -44,16 +49,19 @@ public class InputValidator implements Validation {
         if (checkIfStringIsNull(country)) {
             System.out.println("Country is null or empty at line " + lineNum);
             return false;
+
         }
 
         if (checkIfStringIsNull(manager)) {
             System.out.println("Manager is null or empty at line " + lineNum);
             return false;
+
         }
 
         if (checkIfStringIsNull(group)) {
             System.out.println("Group is null or empty at line " + lineNum);
             return false;
+
         }
 
         return true;
@@ -66,6 +74,7 @@ public class InputValidator implements Validation {
         if (data.length != 5) {
             System.out.println("Invalid number of parameters at line " + lineNum);
             return false;
+
         }
 
         try {
@@ -74,11 +83,13 @@ public class InputValidator implements Validation {
             if (checkIfStringIsNull(data[2])) {
                 System.out.println("Position is null or empty at line " + lineNum);
                 return false;
+
             }
 
             if (checkIfStringIsNull(data[3])) {
                 System.out.println("Name is null or empty at line " + lineNum);
                 return false;
+
             }
 
             Long teamId = Long.parseLong(data[4]);
@@ -88,11 +99,13 @@ public class InputValidator implements Validation {
             if (optionalTeam.isEmpty()) {
                 System.out.println("There is no such team for player at line " + lineNum);
                 return false;
+
             }
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid number at line " + lineNum);
             return false;
+
         }
 
         return true;
@@ -105,9 +118,11 @@ public class InputValidator implements Validation {
         if (data.length != 5) {
             System.out.println("Invalid number of parameters at line " + lineNum);
             return false;
+
         }
 
         try {
+
             long teamAId = Long.parseLong(data[1]);
             long teamBId = Long.parseLong(data[2]);
 
@@ -117,11 +132,13 @@ public class InputValidator implements Validation {
             if (teamAById.isEmpty()) {
                 System.out.println("There is no such team at line " + lineNum);
                 return false;
+
             }
 
             if (teamBById.isEmpty()) {
                 System.out.println("There is no such team at line " + lineNum);
                 return false;
+
             }
 
             Date date = dateParser.parse(data[3]);
@@ -136,6 +153,7 @@ public class InputValidator implements Validation {
             if (!isValidResultFormat(resultString)) {
                 System.out.println("Invalid result format at line " + lineNum);
                 return false;
+
             }
 
 
@@ -143,6 +161,7 @@ public class InputValidator implements Validation {
         } catch (NumberFormatException e) {
             System.out.println("Invalid number at line " + lineNum);
             return false;
+
         }
 
         return true;
@@ -151,55 +170,68 @@ public class InputValidator implements Validation {
     @Override
     public boolean validateParticipation(String line, int lineNum) {
         String[] data = line.split(",");
+
         if (data.length != 5) {
             System.out.println("Invalid number of parameters at line " + lineNum);
             return false;
+
         }
 
         try {
             Long playerId = Long.parseLong(data[1]);
             Optional<Player> playerById = playerService.findPlayerById(playerId);
+
             if (playerById.isEmpty()) {
                 System.out.println("Player with id " + playerId + " does not exist at line " + lineNum);
                 return false;
+
             }
 
             Long meetId = Long.parseLong(data[2]);
             Optional<Meet> meetById = meetService.findMeetById(meetId);
+
             if (meetById.isEmpty()) {
                 System.out.println("There is no such match with id " + meetById + " at line" + lineNum);
                 return false;
+
             }
 
             int fromMinutes = Integer.parseInt(data[3]);
 
             if (fromMinutes < 0) {
                 System.out.println("From minutes cannot be negative number at line " + lineNum);
+
             }
 
             String toMinutes = data[4].trim();
 
             if (!toMinutes.equals("NULL")) {
                 Integer.parseInt(toMinutes);
+
             }
 
             if (toMinutes.equals("NULL")) {
+
                 int toMinutesInNumber = 90;
+
                 if (fromMinutes >= toMinutesInNumber) {
                     System.out.println("Invalid player participation time: fromMinutes cannot be greater than or " +
                             "equal to toMinutes at line " + lineNum);
                     return false;
+
                 }
             } else {
                 int toMinutesInNumber = Integer.parseInt(toMinutes);
                 if (fromMinutes >= toMinutesInNumber) {
                     System.out.println("Invalid player participation time: fromMinutes cannot be greater than or equal to toMinutes at line " + lineNum);
                     return false;
+
                 }
             }
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid number at line " + lineNum);
+
         }
 
         return true;

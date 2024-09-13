@@ -1,9 +1,9 @@
 package com.academy.server.service;
 
-import com.academy.server.dto.PlayerInTeamDTO;
-import com.academy.server.dto.TeamDetailsDTO;
-import com.academy.server.dto.TeamWithPlayersDTO;
-import com.academy.server.dto.TeamWithoutPlayersDTO;
+import com.academy.server.dto.player_dtos.PlayerInTeamDTO;
+import com.academy.server.dto.teams_dtos.TeamDetailsDTO;
+import com.academy.server.dto.teams_dtos.TeamWithPlayersDTO;
+import com.academy.server.dto.teams_dtos.TeamWithoutPlayersDTO;
 import com.academy.server.model.Team;
 import com.academy.server.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
+
     @Autowired
     private TeamRepository teamRepository;
 
@@ -24,15 +25,17 @@ public class TeamService {
                 .stream()
                 .map(this::convertToDTOWithPlayers)
                 .collect(Collectors.toList());
+
     }
 
     public void saveTeams(List<Team> teams) {
         teamRepository.saveAll(teams);
+
     }
 
     public Optional<Team> getTeamById(Long id) {
-
         return teamRepository.findById(id);
+
     }
 
     public List<TeamWithoutPlayersDTO> getTeamsWithoutPlayers() {
@@ -40,6 +43,7 @@ public class TeamService {
                 .stream()
                 .map(this::convertToDTOWithoutPlayers)
                 .collect(Collectors.toList());
+
     }
 
     private TeamWithoutPlayersDTO convertToDTOWithoutPlayers(Team team) {
@@ -49,6 +53,7 @@ public class TeamService {
                 team.getManager(),
                 team.getGroupName()
         );
+
     }
 
     private TeamWithPlayersDTO convertToDTOWithPlayers(Team team) {
@@ -68,6 +73,7 @@ public class TeamService {
                 team.getGroupName(),
                 playerInTeamDTOS
         );
+
     }
 
 
@@ -84,8 +90,10 @@ public class TeamService {
 
             TeamDetailsDTO dto = new TeamDetailsDTO(id, teamName, playerNumber, playerName, position);
             playerDTOs.add(dto);
+
         }
 
         return playerDTOs;
+
     }
 }

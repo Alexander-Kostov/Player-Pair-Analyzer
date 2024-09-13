@@ -39,21 +39,27 @@ public class DataInitializer {
         List<Team> teams = csvReader.readTeams(filepath + "/teams.csv");
         if (teams != null) {
             teamService.saveTeams(teams);
+
         }
+
         List<Player> players = csvReader.readPlayers(filepath + "/players.csv");
         if (players != null) {
             playerService.savePlayers(players);
+
         }
+
         List<Meet> meets = csvReader.readMeets(filepath + "/matches.csv");
         if (meets != null) {
             meetService.saveMeets(meets);
+
         }
+
         List<PlayerParticipation> playerParticipations = csvReader.readParticipations(filepath + "/records.csv");
         if (playerParticipations != null) {
             playerParticipationService.saveAllParticipations(playerParticipations);
+
         }
 
     }
-
 
 }

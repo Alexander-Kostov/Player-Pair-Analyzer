@@ -1,4 +1,4 @@
-package com.academy.server.dto;
+package com.academy.server.dto.teams_dtos;
 
 public class TeamDetailsDTO {
     private Long id;

@@ -1,7 +1,6 @@
 package com.academy.server.controller;
 
-import com.academy.server.dto.PlayerInTeamDTO;
-import com.academy.server.dto.SeparatePlayerDTO;
+import com.academy.server.dto.player_dtos.SeparatePlayerDTO;
 import com.academy.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
