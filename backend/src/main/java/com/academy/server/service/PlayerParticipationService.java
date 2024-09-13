@@ -21,16 +21,21 @@ public class PlayerParticipationService {
         playerParticipationRepository.saveAll(playerParticipations);
     }
 
-    public List<PlayersWithMostMutualTimeDTO> getPlayersWithMostMutualTime() {
-        List<Object[]> results = playerParticipationRepository.findPlayersWithMostMutualTimeTogether();
-        return mapToPlayersWithMostMutualTimeDTO(results);
-    }
-
     public List<PlayerParticipationDTO> getAllPlayerParticipations() {
         return playerParticipationRepository
                 .findAll().stream()
                 .map(this::mapToPlayerParticipationDTO)
                 .collect(Collectors.toList());
+    }
+    public List<PlayersWithMostMutualTimeDTO> getPlayersWithMostMutualTime() {
+        List<Object[]> results = playerParticipationRepository.findPlayersWithMostMutualTime();
+        return mapToPlayersWithMostMutualTimeDTO(results);
+    }
+
+    public List<PlayersWithMostMutualTimeDTO> findPlayersWithMostMutualTimeFromDifferentTeams() {
+        List<Object[]> playersWithMostMutualTimeFromDifferentTeams =
+                playerParticipationRepository.findPlayersWithMostMutualTimeFromDifferentTeams();
+        return mapToPlayersWithMostMutualTimeDTO(playersWithMostMutualTimeFromDifferentTeams);
     }
 
     private List<PlayersWithMostMutualTimeDTO> mapToPlayersWithMostMutualTimeDTO(List<Object[]> results) {
@@ -40,7 +45,8 @@ public class PlayerParticipationService {
             String player2 = (String) result[1];
             BigDecimal bigDecimal = (BigDecimal) result[2];
             int totalTimeTogether = bigDecimal.intValue();
-            resultDTOs.add(new PlayersWithMostMutualTimeDTO(player1, player2, totalTimeTogether));
+            String matchTime = (String) result[3];
+            resultDTOs.add(new PlayersWithMostMutualTimeDTO(player1, player2, totalTimeTogether, matchTime));
         }
         return resultDTOs;
     }

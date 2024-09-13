@@ -5,14 +5,14 @@ public class SeparatePlayerDTO {
     private String fullName;
     private int teamNumber;
     private String position;
-    private Long teamId;
+    private String teamName;
 
-    public SeparatePlayerDTO(Long id, String fullName, int teamNumber, String position, Long teamId) {
+    public SeparatePlayerDTO(Long id, String fullName, int teamNumber, String position, String teamName) {
         this.id = id;
         this.fullName = fullName;
         this.teamNumber = teamNumber;
         this.position = position;
-        this.teamId = teamId;
+        this.teamName = teamName;
     }
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class SeparatePlayerDTO {
         this.position = position;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

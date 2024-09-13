@@ -13,11 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/players")
 public class PlayerController {
+
     @Autowired
     private PlayerService playerService;
 
     @GetMapping("/all")
     public List<SeparatePlayerDTO> showAllPlayers() {
         return playerService.getAllPlayers();
+
     }
 }

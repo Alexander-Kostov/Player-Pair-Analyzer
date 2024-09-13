@@ -4,11 +4,13 @@ public class PlayersWithMostMutualTimeDTO {
     private String player1;
     private String player2;
     private int totalTimeTogether;
+    private String matchTimes;
 
-    public PlayersWithMostMutualTimeDTO(String player1, String player2, int totalTimeTogether) {
+    public PlayersWithMostMutualTimeDTO(String player1, String player2, int totalTimeTogether, String matchTimes) {
         this.player1 = player1;
         this.player2 = player2;
         this.totalTimeTogether = totalTimeTogether;
+        this.matchTimes = matchTimes;
     }
 
     public String getPlayer1() {
@@ -33,5 +35,13 @@ public class PlayersWithMostMutualTimeDTO {
 
     public void setTotalTimeTogether(int totalTimeTogether) {
         this.totalTimeTogether = totalTimeTogether;
+    }
+
+    public String getMatchTimes() {
+        return matchTimes;
+    }
+
+    public void setMatchTimes(String matchTimes) {
+        this.matchTimes = matchTimes;
     }
 }

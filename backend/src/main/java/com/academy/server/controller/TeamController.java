@@ -15,20 +15,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
+
     @Autowired
     private TeamService teamService;
+
     @GetMapping("/with-players")
     public List<TeamWithPlayersDTO> showAllTeams() {
-
         return teamService.getAll();
+
     }
+
     @GetMapping("/without-players")
     public List<TeamWithoutPlayersDTO> showTeamsWithoutPlayers() {
         return teamService.getTeamsWithoutPlayers();
+
     }
+
     @GetMapping("/{teamId}")
     public List<TeamDetailsDTO> getTeamDetails(@PathVariable Long teamId) {
         return teamService.getTeamDetails(teamId);
+
     }
 
 }

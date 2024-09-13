@@ -124,8 +124,7 @@ public class InputValidator implements Validation {
                 return false;
             }
 
-            String format = "MM/dd/yyyy";
-            Date date = dateParser.parseDateFromMDY(data[3], format);
+            Date date = dateParser.parse(data[3]);
 
             if (date == null) {
                 System.out.println("Invalid date parse at line " + lineNum);

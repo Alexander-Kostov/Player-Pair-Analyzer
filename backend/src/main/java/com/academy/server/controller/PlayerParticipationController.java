@@ -13,14 +13,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/participations")
 public class PlayerParticipationController {
+
     @Autowired
     private PlayerParticipationService participationService;
-    @GetMapping("/most-time")
+
+    @GetMapping("/all-time")
     public List<PlayersWithMostMutualTimeDTO> showPlayersWithMostMutualTime() {
         return participationService.getPlayersWithMostMutualTime();
+
     }
+
+    @GetMapping("/different-teams-time")
+    public List<PlayersWithMostMutualTimeDTO> findPlayersWithMostMutualTimeFromDifferentTeams() {
+        return participationService.findPlayersWithMostMutualTimeFromDifferentTeams();
+
+    }
+
     @GetMapping("/all")
     public List<PlayerParticipationDTO> showAllPlayerParticipations() {
         return participationService.getAllPlayerParticipations();
+
     }
 }

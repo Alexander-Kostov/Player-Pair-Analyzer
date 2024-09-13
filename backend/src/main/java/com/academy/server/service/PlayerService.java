@@ -26,7 +26,7 @@ public class PlayerService {
     private SeparatePlayerDTO convertToDTO(Player player) {
 
         return new SeparatePlayerDTO(player.getId(), player.getFullName(), player.getTeamNumber(),
-                player.getPosition(), player.getTeam().getId());
+                player.getPosition(), player.getTeam().getName());
 
     }
 

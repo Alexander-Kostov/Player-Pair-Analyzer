@@ -32,6 +32,7 @@ public class CSVReader {
     private MeetService meetService;
     @Autowired
     private DateParser dateParser;
+
     public List<Team> readTeams(String filepath) {
         List<Team> teams = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
@@ -43,8 +44,9 @@ public class CSVReader {
             String line;
 
             if ((line = br.readLine()) == null) {
-                System.out.println("Teams file is empty");
-                return teams;
+                System.out.println("Teams file line " + lineNum + "is empty");
+                System.out.println("Empty lines are not allowed for data integrity");
+                return null;
             }
 
             while ((line = br.readLine()) != null) {
@@ -84,8 +86,9 @@ public class CSVReader {
             int lineNum = 0;
 
             if ((line = br.readLine()) == null) {
-                System.out.println("Players file is empty");
-                return players;
+                System.out.println("Players file line " + lineNum + " is empty");
+                System.out.println("Empty lines are not allowed for data integrity");
+                return null;
             }
 
             while ((line = br.readLine()) != null) {
@@ -124,7 +127,7 @@ public class CSVReader {
             int lineNum = 0;
 
             if ((line = br.readLine()) == null) {
-                System.out.println("Matches file is empty");
+                System.out.println("Matches file is empty.");
                 return meets;
             }
 
@@ -136,18 +139,33 @@ public class CSVReader {
                     long teamAId = Long.parseLong(data[1]);
                     long teamBId = Long.parseLong(data[2]);
 
-                    Team teamA = teamService.getTeamById(teamAId).get();
-                    Team teamB = teamService.getTeamById(teamBId).get();
-                    String format = "MM/dd/yyyy";
+                    Team teamA = teamService.getTeamById(teamAId).orElse(null);
+                    Team teamB = teamService.getTeamById(teamBId).orElse(null);
 
-                    Date date = dateParser.parseDateFromMDY(data[3], format);
+                    if (teamA == null || teamB == null) {
+                        System.out.println("Invalid team IDs at line " + lineNum);
+                        lineNum++;
+                        continue;
+                    }
+
+                    String inputDate = data[3];
+                    Date date = dateParser.parse(inputDate);
+
+                    if (date == null) {
+                        System.out.println("Invalid date format at line " + lineNum);
+                        lineNum++;
+                        return null;
+                    }
 
                     String result = data[4];
 
                     Meet meet = new Meet(teamA, teamB, date, result);
                     meets.add(meet);
-                }
 
+                } else {
+                    System.out.println("Please try again with valid data");
+                    return null;
+                }
 
                 lineNum++;
             }
@@ -168,8 +186,9 @@ public class CSVReader {
             int lineNum = 0;
 
             if ((line = br.readLine()) == null) {
-                System.out.println("records file is empty");
-                return playerParticipations;
+                System.out.println("Records file line " + lineNum + "is empty");
+                System.out.println("Empty lines are not allowed for data integrity");
+                return null;
             }
 
             while ((line = br.readLine()) != null) {
@@ -199,6 +218,9 @@ public class CSVReader {
                     );
 
                     playerParticipations.add(playerParticipation);
+                } else {
+                    System.out.println("Please try again with valid data");
+                    return null;
                 }
 
                 lineNum++;
