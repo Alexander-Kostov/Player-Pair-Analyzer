@@ -35,8 +35,11 @@
   <img src="https://img.shields.io/badge/React_Query-FF4154?style=flat&logo=reactquery&logoColor=ffffff" alt="react-query" width="120" height="40"/>
 </a>
 
+<br></br>
 
-## API Endpoints
+# Backend Overview
+
+### API Endpoints
 ### Main Url: localhost:8080
 
 Here are the available API endpoints for this application:
@@ -148,7 +151,13 @@ Here are the available API endpoints for this application:
   - **Status Code:** 200 OK
   - **Body:** JSON array of participation objects.
 
-## Database Entities
+## Backend Logic Displayed
+![image](https://github.com/user-attachments/assets/a38da0b0-dd06-4e83-ae62-414c249e9307)
+
+<br></br>
+
+# Databse Overview
+### Database Entities
 
 #### **Player**
 - **Description:** Represents a football player.
@@ -189,10 +198,9 @@ Here are the available API endpoints for this application:
 ### EER Diagram
 ![image](https://github.com/user-attachments/assets/dc56e28e-ccb5-4690-87b5-a8358a13b7b6)
 
-## Backend Logic Displayed
-![image](https://github.com/user-attachments/assets/a38da0b0-dd06-4e83-ae62-414c249e9307)
+<br></br>
 
-## Frontend Overview
+# Frontend Overview
 
 The front-end part of the application is built using React, ensuring a dynamic and responsive user experience. The data retrieved from the backend API is displayed in a structured and user-friendly manner, allowing users to easily explore the Euro Cup 2024 statistics.
 
