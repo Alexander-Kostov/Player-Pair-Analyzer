@@ -4,7 +4,7 @@ import Teams from "./components/teams/Teams"
 import Players from "./components/players/Players"
 import SingleMatchComponent from "./components/tournament/MatchDetails"
 import TeamDetails from "./components/teams//TeamDetails"
-import Participations from "./components/Participations"
+import Participations from "./components/participations/Participations"
 import LastingDuosAll from "./components/lasting-duos/LastingDuosAll";
 import LastingDuosFromDifferentTeams from "./components/lasting-duos/LastingDuosFromDifferentTeams";
 import Header from "./components/Header"

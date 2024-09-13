@@ -1,4 +1,4 @@
-import { useGetParticipationsData } from "../queries/useGetParticipationsData";
+import { useGetParticipationsData } from "../../queries/useGetParticipationsData";
 
 export default function Participations() {
     const { data: participations, error, isLoading } = useGetParticipationsData();
